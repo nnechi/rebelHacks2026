@@ -221,12 +221,10 @@ func playerLose():
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
 	$Buttons/VBoxContainer/OptimalMove.disabled = true
-	StatsManager.record_game(-1)
 	await get_tree().create_timer(1).timeout
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
 	$Replay.visible = true
-	
 	
 	
 func playerWin(blackjack=false):
@@ -238,12 +236,10 @@ func playerWin(blackjack=false):
 	$Buttons/VBoxContainer/Stand.disabled = true
 	$Buttons/VBoxContainer/OptimalMove.disabled = true
 	
-	StatsManager.record_game(1)
 	await get_tree().create_timer(1).timeout
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
 	$Replay.visible = true
-
 	
 	
 func playerDraw():
@@ -253,12 +249,10 @@ func playerDraw():
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
 	$Buttons/VBoxContainer/OptimalMove.disabled = true
-	StatsManager.record_game(0)
 	await get_tree().create_timer(1).timeout
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
 	$Replay.visible = true
-
 
 
 func _on_exit_pressed():
