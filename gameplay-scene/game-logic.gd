@@ -49,6 +49,38 @@ func _ready():
 func _process(delta):
 	pass
 	
+func make_wrapped_card(texture_path: String) -> Control:
+	var tex: Texture2D = load(texture_path)
+
+	var wrapper := Control.new()
+	wrapper.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	wrapper.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	wrapper.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+
+	# IMPORTANT: container layout uses this
+	wrapper.custom_minimum_size = tex.get_size()
+
+	var rect := TextureRect.new()
+	rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	rect.texture = tex
+	rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	rect.stretch_mode = TextureRect.STRETCH_KEEP
+
+	# Make the card fill the wrapper
+	rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+	rect.position = Vector2(0, -40)
+
+	wrapper.add_child(rect)
+
+	# Animate INSIDE the wrapper
+	rect.modulate.a = 0.0
+	rect.scale = Vector2(0.9, 0.9)
+	var tween := create_tween()
+	tween.tween_property(rect, "position", Vector2.ZERO, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(rect, "modulate:a", 1.0, 0.18)
+	tween.parallel().tween_property(rect, "scale", Vector2.ONE, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+	return wrapper
 	
 func _on_hit_pressed():
 	$PlayerHitMarker.visible = true
@@ -103,13 +135,9 @@ func _on_stand_pressed():
 	
 	# Create a new TextureRect node for the card image
 	var card = dealerCards[0]
-	var card_texture_rect = TextureRect.new()
-	var card_texture = ResourceLoader.load(card[1])
-	card_texture_rect.texture = card_texture
-
-	# Add the card as a child to the HBoxContainer
-	dealer_hand_container.add_child(card_texture_rect)
-	dealer_hand_container.move_child(card_texture_rect, 0)
+	var wrapper := make_wrapped_card(card[1])
+	dealer_hand_container.add_child(wrapper)
+	dealer_hand_container.move_child(wrapper, 0)
 	
 	# Add score to dealerScore
 	if card[0] == 11 and dealerScore > 10:  # Aces are 1 if score is too high for 11
@@ -179,11 +207,6 @@ func generate_card(hand, back=false):
 		var random_card_name = cardsShuffled.pop_back()
 		random_card = card_images[random_card_name] 
 		# random_card is an array [card value, card image path]
-
-	# Create a new TextureRect node for card
-	var card_texture = ResourceLoader.load(random_card[1])
-	var card_texture_rect = TextureRect.new()
-	card_texture_rect.texture = card_texture
 	
 	# Get a reference to the existing HBoxContainer
 	var card_hand_container
@@ -204,8 +227,9 @@ func generate_card(hand, back=false):
 	else:
 		return
 		
-	# Add the card as a child to the HBoxContainer
-	card_hand_container.add_child(card_texture_rect)
+	# Add wrapped card (so container controls wrapper, we animate the inside)
+	var wrapper := make_wrapped_card(random_card[1])
+	card_hand_container.add_child(wrapper)
 
 
 func updateText():
