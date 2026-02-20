@@ -113,6 +113,13 @@ text = "OPTIMAL
 MOVE
 "
 
+[node name="Autoplay" type="Button" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_sviuc")
+theme_override_font_sizes/font_size = 25
+text = "AUTOPLAY"
+
 [node name="Cards" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -297,5 +304,6 @@ text = "EXIT"
 [connection signal="pressed" from="Buttons/VBoxContainer/Hit" to="." method="_on_hit_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/Stand" to="." method="_on_stand_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/OptimalMove" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/Autoplay" to="." method="_on_autoplay_pressed"]
 [connection signal="pressed" from="Replay" to="." method="_on_replay_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
