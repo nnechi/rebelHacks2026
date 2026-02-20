@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d11lim1u2e24i"]
+[gd_scene format=3 uid="uid://d11lim1u2e24i"]
 
-[ext_resource type="Script" path="res://gameplay-scene/game-logic.gd" id="1_n2enm"]
+[ext_resource type="Script" uid="uid://be8i7rv0xfrr8" path="res://gameplay-scene/game-logic.gd" id="1_n2enm"]
 [ext_resource type="FontFile" uid="uid://cpwm7d3lrhrkk" path="res://assets/PixelifySans-Regular.ttf" id="2_dl2ym"]
 [ext_resource type="FontFile" uid="uid://ddmd7pp0hamna" path="res://assets/PublicPixel.ttf" id="2_sviuc"]
+[ext_resource type="Script" uid="uid://1banu0s633nf" path="res://win_loss_graph.gd" id="4_1jfn3"]
 
 [sub_resource type="Animation" id="Animation_1h22c"]
 resource_name = "HitAnimationD"
@@ -60,11 +61,11 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6250x"]
 _data = {
-"HitAnimationD": SubResource("Animation_1h22c"),
-"HitAnimationP": SubResource("Animation_4r27c")
+&"HitAnimationD": SubResource("Animation_1h22c"),
+&"HitAnimationP": SubResource("Animation_4r27c")
 }
 
-[node name="Gameplay" type="Control"]
+[node name="Gameplay" type="Control" unique_id=1143936419]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,7 +74,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n2enm")
 
-[node name="Buttons" type="MarginContainer" parent="."]
+[node name="Buttons" type="MarginContainer" parent="." unique_id=711690822]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.8625
@@ -84,26 +85,26 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons" unique_id=1731917359]
 layout_mode = 2
 theme_override_constants/separation = 13
 alignment = 2
 
-[node name="Hit" type="Button" parent="Buttons/VBoxContainer"]
+[node name="Hit" type="Button" parent="Buttons/VBoxContainer" unique_id=394051315]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 25
 text = "HIT"
 
-[node name="Stand" type="Button" parent="Buttons/VBoxContainer"]
+[node name="Stand" type="Button" parent="Buttons/VBoxContainer" unique_id=1922997352]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 25
 text = "STAND"
 
-[node name="OptimalMove" type="Button" parent="Buttons/VBoxContainer"]
+[node name="OptimalMove" type="Button" parent="Buttons/VBoxContainer" unique_id=524714895]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_sviuc")
@@ -113,7 +114,7 @@ text = "OPTIMAL
 MOVE
 "
 
-[node name="Cards" type="MarginContainer" parent="."]
+[node name="Cards" type="MarginContainer" parent="." unique_id=65549696]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.145
@@ -129,20 +130,20 @@ scale = Vector2(0.5, 0.5)
 theme_override_constants/margin_top = 45
 theme_override_constants/margin_bottom = 45
 
-[node name="Hands" type="VBoxContainer" parent="Cards"]
+[node name="Hands" type="VBoxContainer" parent="Cards" unique_id=1165428833]
 layout_mode = 2
 theme_override_constants/separation = 630
 alignment = 2
 
-[node name="DealerHand" type="HBoxContainer" parent="Cards/Hands"]
+[node name="DealerHand" type="HBoxContainer" parent="Cards/Hands" unique_id=387357513]
 layout_mode = 2
 alignment = 1
 
-[node name="PlayerHand" type="HBoxContainer" parent="Cards/Hands"]
+[node name="PlayerHand" type="HBoxContainer" parent="Cards/Hands" unique_id=241397182]
 layout_mode = 2
 alignment = 1
 
-[node name="DealerScore" type="Label" parent="."]
+[node name="DealerScore" type="Label" parent="." unique_id=1295954645]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -156,7 +157,7 @@ theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 42
 horizontal_alignment = 1
 
-[node name="PlayerScore" type="Label" parent="."]
+[node name="PlayerScore" type="Label" parent="." unique_id=795701439]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -170,7 +171,7 @@ theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 42
 horizontal_alignment = 1
 
-[node name="NumberBar" type="ColorRect" parent="."]
+[node name="NumberBar" type="ColorRect" parent="." unique_id=932776801]
 show_behind_parent = true
 light_mask = 512
 visibility_layer = 512
@@ -182,7 +183,7 @@ offset_bottom = 1100.0
 mouse_filter = 2
 color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 
-[node name="NumberBar2" type="ColorRect" parent="."]
+[node name="NumberBar2" type="ColorRect" parent="." unique_id=2006072825]
 show_behind_parent = true
 light_mask = 512
 visibility_layer = 512
@@ -194,7 +195,7 @@ offset_bottom = 587.0
 mouse_filter = 2
 color = Color(0.101961, 0.101961, 0.101961, 1)
 
-[node name="RightMenuBar" type="ColorRect" parent="."]
+[node name="RightMenuBar" type="ColorRect" parent="." unique_id=9125353]
 show_behind_parent = true
 light_mask = 512
 visibility_layer = 512
@@ -206,7 +207,7 @@ offset_bottom = 1106.0
 mouse_filter = 2
 color = Color(0.168627, 0.168627, 0.168627, 1)
 
-[node name="PlayerHitMarker" type="Label" parent="."]
+[node name="PlayerHitMarker" type="Label" parent="." unique_id=1713670034]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.083
@@ -220,7 +221,7 @@ theme_override_fonts/font = ExtResource("2_dl2ym")
 theme_override_font_sizes/font_size = 80
 text = "hit!"
 
-[node name="DealerHitMarker" type="Label" parent="."]
+[node name="DealerHitMarker" type="Label" parent="." unique_id=1238981134]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.083
@@ -234,13 +235,11 @@ theme_override_fonts/font = ExtResource("2_dl2ym")
 theme_override_font_sizes/font_size = 80
 text = "hit!"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_6250x")
-}
-autoplay = "HitAnimationD"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2108297599]
+libraries/ = SubResource("AnimationLibrary_6250x")
+autoplay = &"HitAnimationD"
 
-[node name="WhoseTurn" type="Label" parent="."]
+[node name="WhoseTurn" type="Label" parent="." unique_id=1262170495]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -256,7 +255,7 @@ theme_override_font_sizes/font_size = 41
 text = "Player's
 Turn"
 
-[node name="WinnerText" type="Label" parent="."]
+[node name="WinnerText" type="Label" parent="." unique_id=625383752]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 440.0
@@ -269,7 +268,7 @@ text = "PLAYER
 WINS"
 vertical_alignment = 1
 
-[node name="Replay" type="Button" parent="."]
+[node name="Replay" type="Button" parent="." unique_id=178259664]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 630.0
@@ -282,8 +281,8 @@ text = "PLAY
 AGAIN"
 alignment = 0
 
-[node name="Exit" type="Button" parent="."]
-layout_mode = 2
+[node name="Exit" type="Button" parent="." unique_id=229100761]
+layout_mode = 0
 offset_left = 1656.0
 offset_top = 951.0
 offset_right = 1893.0
@@ -293,6 +292,44 @@ theme_override_colors/font_color = Color(1, 0.556863, 0.494118, 1)
 theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 25
 text = "EXIT"
+
+[node name="WinLossGraph" type="Control" parent="." unique_id=1513771529]
+layout_mode = 1
+anchor_left = 0.05
+anchor_top = 0.68
+anchor_right = 0.05
+anchor_bottom = 0.68
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_1jfn3")
+
+[node name="Title" type="Label" parent="WinLossGraph" unique_id=447173736]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 28
+text = "Win/Loss History"
+horizontal_alignment = 1
+
+[node name="Stats" type="Label" parent="WinLossGraph" unique_id=912273532]
+layout_mode = 0
+offset_right = 228.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 20
+text = "Games: 0 | Net: 0"
+horizontal_alignment = 1
+
+[node name="PlotArea" type="Control" parent="WinLossGraph" unique_id=1270461390]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 80.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CumulativeLine" type="Line2D" parent="WinLossGraph/PlotArea" unique_id=77281422]
+width = 4.0
+default_color = Color(0, 1, 0.53333336, 1)
 
 [connection signal="pressed" from="Buttons/VBoxContainer/Hit" to="." method="_on_hit_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/Stand" to="." method="_on_stand_pressed"]

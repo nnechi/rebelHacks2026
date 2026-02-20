@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2wrgyetcvlpg"]
+[gd_scene format=3 uid="uid://b2wrgyetcvlpg"]
 
-[ext_resource type="Script" path="res://main-scene/main_scene.gd" id="1_dg3ai"]
+[ext_resource type="Script" uid="uid://bnpdx4jgis0am" path="res://main-scene/main_scene.gd" id="1_dg3ai"]
 
-[node name="Menu" type="Control"]
+[node name="Menu" type="Control" unique_id=27156972]
 layout_mode = 3
 anchor_right = 1.00174
 anchor_bottom = 1.00309
@@ -13,7 +13,7 @@ size_flags_vertical = 3
 script = ExtResource("1_dg3ai")
 metadata/_edit_use_anchors_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1439407424]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,11 +25,11 @@ offset_bottom = -77.3373
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=19109264]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1511090768]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
 theme_override_colors/font_color = Color(0.894118, 0.894118, 0.894118, 1)
@@ -37,7 +37,7 @@ theme_override_font_sizes/font_size = 80
 text = "Play"
 alignment = 0
 
-[node name="CloseGame" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="CloseGame" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1732503778]
 layout_mode = 2
 theme_type_variation = &"FlatButton"
 theme_override_colors/font_color = Color(0.894118, 0.894118, 0.894118, 1)
@@ -45,7 +45,7 @@ theme_override_font_sizes/font_size = 80
 text = "Exit"
 alignment = 0
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="Label" type="Label" parent="MarginContainer" unique_id=808950638]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.894118, 0.894118, 0.894118, 1)
 theme_override_font_sizes/font_size = 100
@@ -57,8 +57,8 @@ text = "BlackJack
 
 "
 
-[node name="Creds" type="Label" parent="."]
-layout_mode = 2
+[node name="Creds" type="Label" parent="." unique_id=1155041585]
+layout_mode = 0
 offset_left = 99.0
 offset_top = 1096.0
 offset_right = 444.0
