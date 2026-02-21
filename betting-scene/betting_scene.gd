@@ -15,6 +15,9 @@ func _ready() -> void:
 	var f: FontFile = load("res://assets/PublicPixel.ttf")
 	spin_edit.add_theme_font_override("font", f)
 	
+	# Flash the bet label, for that eye grabbing effect
+	_flash($betLabel)
+	
 func _on_button_pressed() -> void:
 	
 	if (Global.bet > 5):
@@ -46,4 +49,9 @@ func _on_bet_spin_box_value_changed(value: int) -> void:
 	$betLabel.text = "Current bet: $" + "%.2f" % Global.bet
 	
 	
+func _flash(node: Control, speed := 0.6) -> void:
+	var tween := node.create_tween()
+	tween.set_loops()  # repeat forever
+	tween.tween_property(node, "modulate:a", 0.0, speed)
+	tween.tween_property(node, "modulate:a", 1.0, speed)
 	
