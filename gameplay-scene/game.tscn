@@ -856,7 +856,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("2_dl2ym")
 theme_override_font_sizes/normal_font_size = 43
-text = "You like what you see? You like what you see? You like what you see? You like what you see? You like what you see? You like what you see?"
+text = "Uhhhhhh......"
 
 [node name="DealerFrame" type="ColorRect" parent="Dialogue" unique_id=1962033622]
 z_index = 10
