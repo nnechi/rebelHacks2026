@@ -81,6 +81,11 @@ func _ready():
 func _process(_delta):
 	pass
 
+func get_random_index(array) -> String:
+	# Get a random integer between 0 and my_array.size() - 1
+	var random_index: int = randi() % (array.size()-1)
+	return array[random_index]
+
 func make_wrapped_card(texture_path: String) -> Control:
 	var tex: Texture2D = load(texture_path)
 
@@ -307,7 +312,7 @@ func playerLose():
 	await get_tree().create_timer(1).timeout
 	#$WinnerText.visible = true
 	
-	Dialogue.ShowMessage("Better luck next time!", true)
+	Dialogue.ShowMessage(get_random_index(Global.loss_lines), true)
 	
 	await get_tree().create_timer(0.5).timeout
 	if Global.autoplay_active:
@@ -331,7 +336,7 @@ func playerWin(blackjack=false):
 	await get_tree().create_timer(1).timeout
 	#$WinnerText.visible = true
 	
-	Dialogue.ShowMessage("You won! Are you card counting???", true)
+	Dialogue.ShowMessage(get_random_index(Global.win_lines), true)
 	
 	Global.push_bank_point(float(Global.bank))
 	

@@ -22,6 +22,7 @@ var general_lines = [
 ]
 
 var loss_lines = [
+	"Better luck next time!",
 	"Oof, should’ve stayed.",
 	"BUSTED!",
 	"That one must have hurt.",
@@ -36,10 +37,9 @@ var close_call_lines = [
 ]
 
 var win_lines = [
-	"BLACKJACK, BABY! Are you sure you can keep this up?",
 	"CHA-CHING! But luck won’t last forever…",
 	"High Roller Mode! Don’t strain yourself.",
-	"Winner Winner! Someone alert the casino…",
+	"Winner Winner! Someone alert the pitboss…",
 	"Stack those chips… before they take them back.",
 	"Remember… luck isn’t a career plan.",
 	"Don’t let the chips stack higher than your wallet.",
