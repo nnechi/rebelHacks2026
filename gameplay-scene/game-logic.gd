@@ -14,6 +14,8 @@ var cardsShuffled = {}
 
 var ace_found
 
+var _autoplay_active = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#call randoizer for card shuffle()
@@ -263,7 +265,10 @@ func playerLose():
 	await get_tree().create_timer(1).timeout
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
-	$Replay.visible = true
+	if _autoplay_active:
+		$Replay.emit_signal("pressed")
+	else:
+		$Replay.visible = true
 
 
 func playerWin(blackjack=false):
@@ -278,7 +283,10 @@ func playerWin(blackjack=false):
 	await get_tree().create_timer(1).timeout
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
-	$Replay.visible = true
+	if _autoplay_active:
+		$Replay.emit_signal("pressed")
+	else:
+		$Replay.visible = true
 
 
 func playerDraw():
@@ -291,7 +299,10 @@ func playerDraw():
 	await get_tree().create_timer(1).timeout
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
-	$Replay.visible = true
+	if _autoplay_active:
+		$Replay.emit_signal("pressed")
+	else:
+		$Replay.visible = true
 
 
 func _on_exit_pressed():
@@ -301,10 +312,11 @@ func _on_exit_pressed():
 func _on_replay_pressed():
 	get_tree().change_scene_to_file("res://gameplay-scene/game.tscn")
 
-
 func _on_button_pressed():
-	# AI logic to determine optimal move
+	_optimalMove()
 
+func _optimalMove():
+	# AI logic to determine optimal move
 	if len(dealerCards) < 2:  # Player clicked button before dealer cards loaded
 		return
 	# dealerCards[0] is hidden; dealerCards[1] is the face-up card
@@ -350,8 +362,6 @@ func playerHasAce(cards):
 
 # ── Autoplay ──────────────────────────────────────────────────────────────────
 
-var _autoplay_active := false
-
 func _on_autoplay_pressed():
 	if _autoplay_active:
 		# Second press: stop autoplay
@@ -369,51 +379,11 @@ func _run_autoplay():
 	while _autoplay_active:
 		# Round is over when Hit/Stand are both disabled
 		if $Buttons/VBoxContainer/Hit.disabled:
-			_autoplay_active = false
+			#_autoplay_active = false
 			$Buttons/VBoxContainer/Autoplay.text = "Autoplay"
 			return
-
-		if len(dealerCards) < 2:
-			await get_tree().create_timer(0.3).timeout
-			continue
-
-		# Determine the optimal move using the same strategy as _on_button_pressed
-		var dealerUpCard = dealerCards[1][0]
-		var hasAce = playerHasAce(playerCards)
-		var should_stand := false
-
-		if hasAce:
-			if playerScore >= 19:
-				should_stand = true
-			elif playerScore == 18 and dealerUpCard <= 8:
-				should_stand = true
-			# else: hit
-		else:
-			if playerScore >= 17 and playerScore <= 20:
-				should_stand = true
-			elif playerScore >= 13 and playerScore <= 16:
-				should_stand = dealerUpCard >= 2 and dealerUpCard <= 6
-			elif playerScore == 12:
-				should_stand = dealerUpCard >= 4 and dealerUpCard <= 6
-			# 4–11: hit; fallthrough: stand
-			elif playerScore < 4 or playerScore > 20:
-				should_stand = true
+		_optimalMove()
+		
 
 		# Brief pause so the player can follow along
 		await get_tree().create_timer(0.8).timeout
-
-		# Check again after the delay — buttons may have been disabled by now
-		if $Buttons/VBoxContainer/Hit.disabled:
-			_autoplay_active = false
-			$Buttons/VBoxContainer/Autoplay.text = "Autoplay"
-			return
-
-		if should_stand:
-			_on_stand_pressed()
-			# Stand ends the round — stop autoplay
-			_autoplay_active = false
-			$Buttons/VBoxContainer/Autoplay.text = "Autoplay"
-			return
-		else:
-			_on_hit_pressed()
-			# After a hit the loop continues and will re-evaluate next tick
