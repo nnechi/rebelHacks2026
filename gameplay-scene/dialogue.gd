@@ -80,7 +80,7 @@ func TweenMessage() -> void:
 	HideMessage()
 	
 func HideMessage() -> void:
-	personLabel.get_parent().visible = false
+	#personLabel.get_parent().visible = false
 	
 	goalMessage = ""
 	messageLabel.text = ""

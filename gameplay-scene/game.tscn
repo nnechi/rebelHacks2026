@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://brp0a4l4i8jda" path="res://gameplay-scene/ties.gd" id="7_21bi7"]
 [ext_resource type="Script" uid="uid://dnc3hffyaohry" path="res://gameplay-scene/bank.gd" id="8_bwecg"]
 [ext_resource type="Texture2D" uid="uid://cgh5agpq8gigh" path="res://assets/images/girlll2.png" id="8_m3mv0"]
-[ext_resource type="Script" path="res://gameplay-scene/arrow.gd" id="13_mnx84"]
+[ext_resource type="Script" uid="uid://dc08110efhcx2" path="res://gameplay-scene/arrow.gd" id="13_mnx84"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kegfm"]
 font_size = 40
@@ -564,7 +564,7 @@ offset_bottom = -85.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_sviuc")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 30
 label_settings = ExtResource("4_kegfm")
 horizontal_alignment = 1
 
@@ -579,7 +579,7 @@ offset_bottom = 121.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_sviuc")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 30
 label_settings = ExtResource("4_kegfm")
 horizontal_alignment = 1
 
