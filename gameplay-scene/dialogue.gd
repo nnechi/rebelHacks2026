@@ -48,6 +48,9 @@ func TweenMessage() -> void:
 		"!" = 1,
 	}
 	
+	if (Global.bank <= 0):
+		return
+	
 	var savedId:int = currentId
 	for char in goalMessage:
 		var waitTime = .07

@@ -1,12 +1,18 @@
 [gd_scene format=3 uid="uid://ch1uf5y0hfox3"]
 
 [ext_resource type="Texture2D" uid="uid://c1hecuiouhn8n" path="res://assets/images/background3.png" id="1_m6wre"]
+[ext_resource type="Script" uid="uid://dk87d2ght8d4j" path="res://end-scene/end_scene.gd" id="1_v8f6b"]
 [ext_resource type="Texture2D" uid="uid://bwpreh7kam3hk" path="res://assets/images/GamblingPSA.png" id="2_v8f6b"]
 [ext_resource type="Texture2D" uid="uid://y5s5uqdhjo64" path="res://assets/images/moneyfly.png" id="3_bm3m8"]
+[ext_resource type="FontFile" uid="uid://cpwm7d3lrhrkk" path="res://assets/PixelifySans-Regular.ttf" id="5_bm3m8"]
 
-[node name="EndScene" type="Node2D" unique_id=1662846675]
+[node name="EndScene" type="Control" unique_id=88152169]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_v8f6b")
 
 [node name="Background" type="TextureRect" parent="." unique_id=836998424]
+layout_mode = 0
 offset_top = -2.0
 offset_right = 1920.0
 offset_bottom = 1078.0
@@ -14,16 +20,28 @@ texture = ExtResource("1_m6wre")
 
 [node name="PSAImage" type="TextureRect" parent="Background" unique_id=898178255]
 layout_mode = 0
-offset_left = 253.0
-offset_top = 116.0
-offset_right = 293.0
-offset_bottom = 156.0
+offset_left = 331.0
+offset_top = 388.0
+offset_right = 1472.0
+offset_bottom = 748.0
 texture = ExtResource("2_v8f6b")
 
 [node name="MoneyFly" type="TextureRect" parent="Background" unique_id=1296097852]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 113.0
-offset_right = 1120.0
-offset_bottom = 1137.0
+offset_left = 1521.0
+offset_top = 261.0
+offset_right = 1824.0
+offset_bottom = 556.0
 texture = ExtResource("3_bm3m8")
+expand_mode = 1
+
+[node name="Loser" type="RichTextLabel" parent="." unique_id=150538214]
+layout_mode = 0
+offset_left = -70.0
+offset_top = 33.0
+offset_right = 1853.0
+offset_bottom = 395.0
+theme_override_fonts/normal_font = ExtResource("5_bm3m8")
+theme_override_font_sizes/normal_font_size = 100
+text = "You LOSE! Everyone is a loser... EVENTUALLY!"
+horizontal_alignment = 1

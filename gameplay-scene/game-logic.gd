@@ -336,12 +336,20 @@ func playerLose():
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
 	$Buttons/VBoxContainer/OptimalMove.disabled = true
-	await get_tree().create_timer(1 * autoplayModifier).timeout
+	await get_tree().create_timer(1).timeout
 	#$WinnerText.visible = true
 	
+	if Global.bank <= 0:
+		#ENDGAME SCENE HERE
+		get_tree().change_scene_to_file("res://end-scene/end-scene.tscn")
+		print("GAME OVER MAN")
+		return
 	Dialogue.ShowMessage(get_random_index(Global.loss_lines), true)
 	
-	await get_tree().create_timer(0.5 * autoplayModifier).timeout
+	await get_tree().create_timer(0.5).timeout
+
+		
+
 	if Global.autoplay_active:
 		await get_tree().create_timer(1).timeout
 		$Replay.emit_signal("pressed")
