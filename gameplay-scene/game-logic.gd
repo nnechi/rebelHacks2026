@@ -264,6 +264,8 @@ func updateText():
 
 
 func playerLose():
+	Global.games+=1
+	Global.losses+=1
 	# Player has lost: display red text, disable buttons, ask to play again
 	$WinnerText.text = "DEALER\nWINS"
 	$WinnerText.set("theme_override_colors/font_color", "ff5342")
@@ -280,6 +282,8 @@ func playerLose():
 
 
 func playerWin(blackjack=false):
+	Global.games+=1
+	Global.wins+=1
 	# Player has won: display text (already set if not blackjack),
 	# display buttons and ask to play again
 	if blackjack:
@@ -299,6 +303,8 @@ func playerWin(blackjack=false):
 
 
 func playerDraw():
+	Global.games+=1
+	Global.ties+=1
 	# Nobody wins: display white text, disable buttons and ask to play again
 	$WinnerText.text = "DRAW"
 	$WinnerText.set("theme_override_colors/font_color", "white")
