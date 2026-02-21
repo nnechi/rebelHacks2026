@@ -19,6 +19,10 @@ var lastBet := Global.bet
 func _ready():
 	#take bet
 	Global.bank -= Global.bet
+	if Global.bank <= 0:
+		#ENDGAME SCENE HERE
+		print("GAME OVER MAN")
+		return
 	$BankBalance/BalanceValue.update_bank_text()
 	Dialogue.Initialize()
 
