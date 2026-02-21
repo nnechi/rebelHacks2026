@@ -23,35 +23,42 @@ var general_lines = [
 	"*Dealer smirks*",
 	"*Dealer blinks twice.*",
 	"I needs a vacation...",
-	"What’s for lunch?"
+	"What's for lunch?"
+]
+var welcome = [
+	"Everyone's a winner in Vegas, eventually...",
+	"Enjoy your stay!",
+	"Another sucker.... I mean patron.",
+	"May lady luck be on your side.",
+	"Fortune favors the bold."
 ]
 
 var loss_lines = [
 	"Better luck next time!",
-	"Oof, should’ve stayed.",
+	"Oof, should've stayed.",
 	"BUSTED!",
 	"That one must have hurt.",
 	"The house says thanks."
 ]
 
 var close_call_lines = [
-	"Maybe don’t hit on 20.",
+	"Maybe don't hit on 20.",
 	"Risky business…",
 	"Vegas remembers.",
 	"That escalated quickly."
 ]
 
 var win_lines = [
-	"CHA-CHING! But luck won’t last forever…",
-	"High Roller Mode! Don’t strain yourself.",
+	"CHA-CHING! But luck won't last forever…",
+	"High Roller Mode! Don't strain yourself.",
 	"Winner Winner! Someone alert the pitboss…",
 	"Stack those chips… before they take them back.",
-	"Remember… luck isn’t a career plan.",
-	"Don’t let the chips stack higher than your wallet.",
-	"Vegas is fun… until it’s not.",
-	"Winning feels good… but addiction doesn’t.",
+	"Remember… luck isn't a career plan.",
+	"Don't let the chips stack higher than your wallet.",
+	"Vegas is fun… until it's not.",
+	"Winning feels good… but addiction doesn't.",
 	"Know when to walk away… seriously.",
-	"That streak won’t last forever. Play responsibly."
+	"That streak won't last forever. Play responsibly."
 ]
 
 func test() -> void:
