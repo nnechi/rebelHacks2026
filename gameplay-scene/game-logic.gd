@@ -26,7 +26,7 @@ var graph: Control
 func _ready():
 	#take bet
 	Global.bank -= Global.bet
-	if Global.bank <= 0:
+	if Global.bank < 0:
 		#ENDGAME SCENE HERE
 		print("GAME OVER MAN")
 		return
