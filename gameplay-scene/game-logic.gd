@@ -16,6 +16,15 @@ var ace_found
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	# Typewriter for BalanceValue
+	$ColorRect/BalanceValue.visible_ratio = 0.0
+	_typewrite($ColorRect/BalanceValue)
+
+	# Blinking for BalanceLabel/BalanceValue
+	_flash($"BalanceLabel/BalanceValue")
+
+	
 	#call randoizer for card shuffle()
 	randomize()
 	if Global.autoplay_active:
@@ -46,6 +55,8 @@ func _ready():
 	updateText()
 	await get_tree().create_timer(1).timeout
 
+
+	
 	if playerScore == 21:
 		playerWin(true)
 		
@@ -390,3 +401,15 @@ func _run_autoplay():
 
 		# Brief pause so the player can follow along
 		await get_tree().create_timer(0.8).timeout
+
+
+func _typewrite(node: RichTextLabel, duration := 2.0) -> void:
+	node.visible_ratio = 0.0
+	var tween := node.create_tween()
+	tween.tween_property(node, "visible_ratio", 1.0, duration).from(0.0)
+
+func _flash(node: Control, speed := 0.6) -> void:
+	var tween := node.create_tween()
+	tween.set_loops()
+	tween.tween_property(node, "modulate:a", 0.0, speed)
+	tween.tween_property(node, "modulate:a", 1.0, speed)

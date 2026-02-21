@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://6gukv6mwhmwh" path="res://assets/images/cards_alternatives/card_back_pix.png" id="2_387hk"]
 [ext_resource type="FontFile" uid="uid://cpwm7d3lrhrkk" path="res://assets/PixelifySans-Regular.ttf" id="2_dl2ym"]
 [ext_resource type="FontFile" uid="uid://ddmd7pp0hamna" path="res://assets/PublicPixel.ttf" id="2_sviuc"]
-[ext_resource type="LabelSettings" path="res://assets/new_label_settings.tres" id="4_kegfm"]
-[ext_resource type="Texture2D" uid="uid://m25mx7arqiyr" path="res://assets/images/arrow.png" id="6_e65rd"]
+[ext_resource type="LabelSettings" uid="uid://y0n1omgt4mxo" path="res://assets/new_label_settings.tres" id="4_kegfm"]
+[ext_resource type="Texture2D" uid="uid://dqdlwn6wx6w18" path="res://assets/images/arrow.png" id="6_e65rd"]
 [ext_resource type="Texture2D" uid="uid://cgh5agpq8gigh" path="res://assets/images/girlll2.png" id="8_m3mv0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kegfm"]
@@ -93,11 +93,6 @@ shadow_offset = Vector2(4, 4)
 [sub_resource type="LabelSettings" id="LabelSettings_bwecg"]
 font_size = 42
 shadow_color = Color(0, 0, 0, 0.5568628)
-shadow_offset = Vector2(4, 4)
-
-[sub_resource type="LabelSettings" id="LabelSettings_fqy1j"]
-font_size = 64
-shadow_color = Color(0, 0, 0, 0.8745098)
 shadow_offset = Vector2(4, 4)
 
 [node name="Gameplay" type="Control" unique_id=258634767]
@@ -523,10 +518,10 @@ color = Color(0, 0, 0, 0.39215687)
 
 [node name="WinnerText" type="Label" parent="." unique_id=836478919]
 layout_mode = 0
-offset_left = 78.0
-offset_top = 440.0
-offset_right = 1312.0
-offset_bottom = 635.0
+offset_left = 785.0
+offset_top = 355.0
+offset_right = 2019.0
+offset_bottom = 550.0
 theme_override_colors/font_color = Color(0.431373, 1, 0.403922, 1)
 theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 60
@@ -679,7 +674,7 @@ theme_override_font_sizes/font_size = 41
 text = "Dealer"
 label_settings = SubResource("LabelSettings_bwecg")
 
-[node name="BalanceValue" type="Label" parent="ColorRect" unique_id=99627992]
+[node name="BalanceValue" type="RichTextLabel" parent="ColorRect" unique_id=124328971]
 z_index = 5
 layout_mode = 1
 anchors_preset = 14
@@ -692,10 +687,9 @@ offset_right = -34.0
 offset_bottom = 93.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_dl2ym")
-theme_override_font_sizes/font_size = 41
+theme_override_fonts/normal_font = ExtResource("2_dl2ym")
+theme_override_font_sizes/normal_font_size = 70
 text = "Everyone's a winner in vegas."
-label_settings = SubResource("LabelSettings_fqy1j")
 
 [node name="ColorRect2" type="ColorRect" parent="ColorRect" unique_id=1962033622]
 z_index = 10
