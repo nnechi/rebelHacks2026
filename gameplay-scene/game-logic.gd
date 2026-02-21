@@ -9,6 +9,7 @@ var dealerScore = 0
 var playerCards = []
 var dealerCards = []
 
+var full52 = {}
 var cardsShuffled = {}
 
 var ace_found
@@ -196,7 +197,13 @@ func create_card_data():
 	#add the the of card image with key "back"
 	card_images["back"] = [0, "res://assets/images/cards_alternatives/card_back_pix.png"]
 
-	cardsShuffled = card_names.duplicate()
+	full52 = card_names.duplicate()
+	cardsShuffled = full52;
+	#number of decks -1 for the range
+	var count = 0
+	while count < 7:
+		cardsShuffled.append_array(full52)
+		count +=1
 	cardsShuffled.shuffle()
 
 
