@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*uid://cglp8xbc6myuy"
+Dialogue="*uid://dlxohm1a51wo7"
 
 [display]
 

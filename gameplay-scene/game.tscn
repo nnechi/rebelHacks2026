@@ -95,11 +95,6 @@ font_size = 42
 shadow_color = Color(0, 0, 0, 0.5568628)
 shadow_offset = Vector2(4, 4)
 
-[sub_resource type="LabelSettings" id="LabelSettings_fqy1j"]
-font_size = 64
-shadow_color = Color(0, 0, 0, 0.8745098)
-shadow_offset = Vector2(4, 4)
-
 [node name="Gameplay" type="Control" unique_id=258634767]
 layout_mode = 3
 anchors_preset = 15
@@ -644,7 +639,7 @@ offset_right = 128.0
 offset_bottom = 128.0
 texture = ExtResource("6_e65rd")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1205941927]
+[node name="Dialogue" type="ColorRect" parent="." unique_id=1205941927]
 z_index = 10
 layout_mode = 0
 offset_left = 407.0
@@ -653,7 +648,7 @@ offset_right = 1536.0
 offset_bottom = 1029.0
 color = Color(0, 0, 0, 0.88235295)
 
-[node name="ColorRect" type="ColorRect" parent="ColorRect" unique_id=1138697945]
+[node name="PersonName" type="ColorRect" parent="Dialogue" unique_id=1138697945]
 z_index = 10
 layout_mode = 0
 offset_top = -91.0
@@ -661,7 +656,7 @@ offset_right = 253.0
 offset_bottom = -31.0
 color = Color(0, 0, 0, 0.88235295)
 
-[node name="BalanceValue" type="Label" parent="ColorRect/ColorRect" unique_id=1611983035]
+[node name="Label" type="Label" parent="Dialogue/PersonName" unique_id=1611983035]
 z_index = 5
 layout_mode = 1
 anchors_preset = 14
@@ -679,7 +674,7 @@ theme_override_font_sizes/font_size = 41
 text = "Dealer"
 label_settings = SubResource("LabelSettings_bwecg")
 
-[node name="BalanceValue" type="Label" parent="ColorRect" unique_id=99627992]
+[node name="Message" type="RichTextLabel" parent="Dialogue" unique_id=1327008304]
 z_index = 5
 layout_mode = 1
 anchors_preset = 14
@@ -692,12 +687,11 @@ offset_right = -34.0
 offset_bottom = 93.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_dl2ym")
-theme_override_font_sizes/font_size = 41
-text = "Everyone's a winner in vegas."
-label_settings = SubResource("LabelSettings_fqy1j")
+theme_override_fonts/normal_font = ExtResource("2_dl2ym")
+theme_override_font_sizes/normal_font_size = 43
+text = "You like what you see? You like what you see? You like what you see? You like what you see? You like what you see? You like what you see?"
 
-[node name="ColorRect2" type="ColorRect" parent="ColorRect" unique_id=1962033622]
+[node name="DealerFrame" type="ColorRect" parent="Dialogue" unique_id=1962033622]
 z_index = 10
 layout_mode = 0
 offset_left = 876.0
@@ -706,7 +700,7 @@ offset_right = 1129.0
 offset_bottom = -31.0
 color = Color(0, 0, 0, 0.88235295)
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect/ColorRect2" unique_id=286263924]
+[node name="TextureRect" type="TextureRect" parent="Dialogue/DealerFrame" unique_id=286263924]
 texture_filter = 1
 layout_mode = 0
 offset_top = -6.0

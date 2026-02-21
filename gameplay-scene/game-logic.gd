@@ -16,6 +16,8 @@ var ace_found
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Dialogue.Initialize()
+
 	#call randoizer for card shuffle()
 	randomize()
 	if Global.autoplay_active:
@@ -51,8 +53,8 @@ func _ready():
 		
 	if Global.autoplay_active:
 		_run_autoplay()
-
-
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -64,25 +66,36 @@ func make_wrapped_card(texture_path: String) -> Control:
 	wrapper.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	wrapper.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	wrapper.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-
-	# IMPORTANT: container layout uses this
 	wrapper.custom_minimum_size = tex.get_size()
+
+	var shadow := ColorRect.new()
+	shadow.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	shadow.color = Color(0, 0, 0, 0.45)
+	shadow.custom_minimum_size = tex.get_size()
+	wrapper.add_child(shadow)
 
 	var rect := TextureRect.new()
 	rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	rect.texture = tex
 	rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	rect.stretch_mode = TextureRect.STRETCH_KEEP
-
-	# Make the card fill the wrapper
-	rect.set_anchors_preset(Control.PRESET_FULL_RECT)
-	rect.position = Vector2(0, -40)
-
 	wrapper.add_child(rect)
 
-	# Animate INSIDE the wrapper
+	shadow.set_anchors_preset(Control.PRESET_FULL_RECT)
+	rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+
+	shadow.position = Vector2(16, 18)
+	rect.position = Vector2(0, -40)
+
+	# --- random rotation (degrees -> radians) ---
+	var deg := randf_range(-3.0, 3.0)
+	rect.rotation = deg_to_rad(deg)
+	shadow.rotation = rect.rotation # optional, looks nicer
+	# ------------------------------------------
+
 	rect.modulate.a = 0.0
 	rect.scale = Vector2(0.9, 0.9)
+
 	var tween := create_tween()
 	tween.tween_property(rect, "position", Vector2.ZERO, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(rect, "modulate:a", 1.0, 0.18)
@@ -138,7 +151,7 @@ func _on_stand_pressed():
 	$Buttons/VBoxContainer/Stand.disabled = true
 	$Buttons/VBoxContainer/OptimalMove.disabled = true
 	$DealerHitMarker.visible = true
-	$WhoseTurn.text = "Dealer's\nTurn"
+	$WhoseTurn.text = "Dealer's Turn"
 
 	await get_tree().create_timer(0.5).timeout
 	var dealer_hand_container = $Cards/Hands/DealerHand
@@ -260,7 +273,7 @@ func updateText():
 
 func playerLose():
 	# Player has lost: display red text, disable buttons, ask to play again
-	$WinnerText.text = "DEALER\nWINS"
+	$WinnerText.text = "DEALER WINS"
 	$WinnerText.set("theme_override_colors/font_color", "ff5342")
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
@@ -278,7 +291,7 @@ func playerWin(blackjack=false):
 	# Player has won: display text (already set if not blackjack),
 	# display buttons and ask to play again
 	if blackjack:
-		$WinnerText.text = "PLAYER WINS\nBY BLACKJACK"
+		$WinnerText.text = "PLAYER WINS BY BLACKJACK"
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
 	$Buttons/VBoxContainer/OptimalMove.disabled = true
