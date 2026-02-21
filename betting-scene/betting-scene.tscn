@@ -7,8 +7,8 @@
 script = ExtResource("1_1uul2")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=576201822]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1922.0
+offset_bottom = 1003.0
 
 [node name="Label" type="Label" parent="." unique_id=1813123593]
 offset_left = 555.0
@@ -78,9 +78,7 @@ offset_left = 615.0
 offset_top = 371.0
 offset_right = 1301.0
 offset_bottom = 477.0
-min_value = 5.0
 max_value = 10000.0
-step = 0.05
 value = 100.0
 update_on_text_changed = true
 
