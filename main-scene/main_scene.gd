@@ -8,3 +8,8 @@ func _on_options_pressed():
 
 func _on_close_game_pressed():
 	get_tree().quit()
+
+func _ready():
+	$MarginContainer/TitleText.visible_ratio = 0.0  # start hidden
+	var tween: Tween = $MarginContainer/TitleText.create_tween()
+	tween.tween_property($MarginContainer/TitleText, "visible_ratio", 1.0, 2.0).from(0.0)
