@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b2wrgyetcvlpg"]
 
 [ext_resource type="Script" uid="uid://bnpdx4jgis0am" path="res://main-scene/main_scene.gd" id="1_dg3ai"]
-[ext_resource type="Texture2D" uid="uid://bbisiq2oftokt" path="res://assets/images/background3.png" id="2_agv4w"]
+[ext_resource type="Texture2D" uid="uid://c3j5l71pj5h37" path="res://assets/images/background3.png" id="2_agv4w"]
 [ext_resource type="FontFile" uid="uid://cpwm7d3lrhrkk" path="res://assets/PixelifySans-Regular.ttf" id="3_agv4w"]
 
 [node name="Menu" type="Control" unique_id=1915823750]
@@ -64,7 +64,7 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("3_agv4w")
 theme_override_font_sizes/normal_font_size = 100
-text = "Blackjack
+text = "The House Always Wins!
 
 
 

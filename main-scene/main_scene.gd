@@ -13,3 +13,5 @@ func _ready():
 	$MarginContainer/TitleText.visible_ratio = 0.0  # start hidden
 	var tween: Tween = $MarginContainer/TitleText.create_tween()
 	tween.tween_property($MarginContainer/TitleText, "visible_ratio", 1.0, 2.0).from(0.0)
+	
+	tween.tween_property($MarginContainer/TitleText, "modulate", Color.RED, 2.0)
