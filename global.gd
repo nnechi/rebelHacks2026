@@ -15,42 +15,38 @@ var bank_history: Array[float] = []
 
 # Dealer / Narration Arrays
 var general_lines = [
-	"Dealer smirks…",
-	"Dealer blinking twice.",
-	"Dealer needs a vacation.",
+	"*Dealer smirks*",
+	"*Dealer blinks twice.*",
+	"I needs a vacation...",
 	"What’s for lunch?"
 ]
 
 var loss_lines = [
-	"Dealer: Oof, should’ve stayed.",
-	"Dealer: BUSTED!",
-	"Dealer: That one must have hurt.",
-	"Dealer: The house says thanks.",
-	"Dealer: Drinks on you!",
-	"Dealer: Oh no! I just lost so much money! Now I can no longer feed my pet flamingo!",
-	"Dealer: I won! Now I can buy TWO monkey NFTs!",
-	"Dealer: I have money to spend on an Astro Citizen™ spaceship!"
+	"Oof, should’ve stayed.",
+	"BUSTED!",
+	"That one must have hurt.",
+	"The house says thanks."
 ]
 
 var close_call_lines = [
-	"Dealer: Maybe don’t hit on 20.",
-	"Dealer: Risky business…",
-	"Dealer: Vegas remembers.",
-	"Dealer: That escalated quickly."
+	"Maybe don’t hit on 20.",
+	"Risky business…",
+	"Vegas remembers.",
+	"That escalated quickly."
 ]
 
 var win_lines = [
-	"Dealer: BLACKJACK, BABY! Are you sure you can keep this up?",
-	"Dealer: CHA-CHING! But luck won’t last forever…",
-	"Dealer: High Roller Mode! Don’t strain yourself.",
-	"Dealer: Winner Winner! Someone alert the casino…",
-	"Dealer: Stack those chips… before they take them back.",
-	"Dealer: Remember… luck isn’t a career plan.",
-	"Dealer: Don’t let the chips stack higher than your wallet.",
-	"Dealer: Vegas is fun… until it’s not.",
-	"Dealer: Winning feels good… but addiction doesn’t.",
-	"Dealer: Know when to walk away… seriously.",
-	"Dealer: That streak won’t last forever. Play responsibly."
+	"BLACKJACK, BABY! Are you sure you can keep this up?",
+	"CHA-CHING! But luck won’t last forever…",
+	"High Roller Mode! Don’t strain yourself.",
+	"Winner Winner! Someone alert the casino…",
+	"Stack those chips… before they take them back.",
+	"Remember… luck isn’t a career plan.",
+	"Don’t let the chips stack higher than your wallet.",
+	"Vegas is fun… until it’s not.",
+	"Winning feels good… but addiction doesn’t.",
+	"Know when to walk away… seriously.",
+	"That streak won’t last forever. Play responsibly."
 ]
 
 func test() -> void:

@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Godot_Blackjack_AI"
+config/name="HouseAlwaysWins"
 run/main_scene="res://main-scene/main_scene.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
