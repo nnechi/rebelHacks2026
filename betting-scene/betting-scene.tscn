@@ -64,13 +64,13 @@ theme_override_fonts/font = ExtResource("2_w4aye")
 theme_override_font_sizes/font_size = 35
 text = "\"Minimum bet is $5.00!\""
 
-[node name="betLabel" type="Label" parent="." unique_id=510693398]
+[node name="betLabel" type="RichTextLabel" parent="." unique_id=1754895577]
 offset_left = 650.0
 offset_top = 255.0
 offset_right = 1297.0
 offset_bottom = 381.0
-theme_override_fonts/font = ExtResource("2_w4aye")
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/normal_font = ExtResource("2_w4aye")
+theme_override_font_sizes/normal_font_size = 60
 text = "Current Bet: $0.00"
 
 [node name="BetSpinBox" type="SpinBox" parent="." unique_id=425498177]
