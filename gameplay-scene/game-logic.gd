@@ -329,6 +329,7 @@ func playerWin(blackjack=false):
 	# display buttons and ask to play again
 	if blackjack:
 		$WinnerText.text = "PLAYER WINS BY BLACKJACK"
+		payPlayer(2.5)
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
 	$Buttons/VBoxContainer/OptimalMove.disabled = true
