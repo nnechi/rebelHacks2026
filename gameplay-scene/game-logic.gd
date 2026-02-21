@@ -270,6 +270,11 @@ func generate_card(hand, back=false):
 
 	# Get a reference to the existing HBoxContainer
 	var card_hand_container
+	#give the dealer cheats
+#	if (dealerScore == 11 or dealerScore == 10) and Global.autoplay_active:
+#		dealerScore =21
+#		updateText()
+#		playerLose()
 	if hand == "player":
 		card_hand_container = $Cards/Hands/PlayerHand
 		if random_card[0] == 11 and playerScore > 10:  # Aces are 1 if score is too high for 11
@@ -316,6 +321,7 @@ func playerLose():
 	
 	await get_tree().create_timer(0.5).timeout
 	if Global.autoplay_active:
+		await get_tree().create_timer(1).timeout
 		$Replay.emit_signal("pressed")
 	else:
 		$Replay.visible = true
