@@ -64,7 +64,7 @@ theme_override_fonts/font = ExtResource("2_w4aye")
 theme_override_font_sizes/font_size = 35
 text = "\"Minimum bet is $5.00!\""
 
-[node name="betLabel" type="Label" parent="." unique_id=510693398]
+[node name="betLabel" type="RichTextLabel" parent="." unique_id=587038275]
 offset_left = 650.0
 offset_top = 255.0
 offset_right = 1297.0

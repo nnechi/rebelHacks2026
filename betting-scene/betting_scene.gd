@@ -48,6 +48,7 @@ func _on_bet_spin_box_value_changed(value: int) -> void:
 	# don't fight the user's typing constantly; format when they finish editing
 	$betLabel.text = "Current bet: $" + "%.2f" % Global.bet
 	
+	
 func _flash(node: Control, speed := 0.6) -> void:
 	var tween := node.create_tween()
 	tween.set_loops()  # repeat forever
