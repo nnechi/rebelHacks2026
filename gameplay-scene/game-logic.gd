@@ -18,8 +18,6 @@ var ace_found
 func _ready():
 	#call randoizer for card shuffle()
 	randomize()
-	print("GL LOADED")
-	print(Global.autoplay_active)
 	if Global.autoplay_active:
 		$Buttons/VBoxContainer/Autoplay.text = "Stop"
 	$Replay.visible = false

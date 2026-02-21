@@ -1,16 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://rlu62c13rlp3"]
+[gd_scene format=3 uid="uid://rlu62c13rlp3"]
 
 [ext_resource type="Script" uid="uid://b2ip5i1cxdl8" path="res://betting-scene/betting_scene.gd" id="1_1uul2"]
 [ext_resource type="FontFile" uid="uid://cpwm7d3lrhrkk" path="res://assets/PixelifySans-Regular.ttf" id="2_w4aye"]
 
-[node name="BettingScene" type="Node2D"]
+[node name="BettingScene" type="Node2D" unique_id=1196833188]
 script = ExtResource("1_1uul2")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=576201822]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1813123593]
 offset_left = 555.0
 offset_top = 87.0
 offset_right = 1292.0
@@ -19,7 +19,7 @@ theme_override_fonts/font = ExtResource("2_w4aye")
 theme_override_font_sizes/font_size = 130
 text = "Place a bet!"
 
-[node name="Label2" type="Label" parent="."]
+[node name="Label2" type="Label" parent="." unique_id=379772620]
 offset_left = 459.0
 offset_top = 362.0
 offset_right = 567.0
@@ -28,7 +28,7 @@ theme_override_fonts/font = ExtResource("2_w4aye")
 theme_override_font_sizes/font_size = 100
 text = "$"
 
-[node name="Go-Back" type="Button" parent="."]
+[node name="Go-Back" type="Button" parent="." unique_id=1952484617]
 offset_left = 626.0
 offset_top = 641.0
 offset_right = 850.0
@@ -37,16 +37,16 @@ theme_override_fonts/font = ExtResource("2_w4aye")
 theme_override_font_sizes/font_size = 50
 text = "Go Back"
 
-[node name="Auto" type="Button" parent="."]
+[node name="Rand" type="Button" parent="." unique_id=394958674]
 offset_left = 998.0
 offset_top = 640.0
 offset_right = 1256.0
 offset_bottom = 766.0
 theme_override_fonts/font = ExtResource("2_w4aye")
 theme_override_font_sizes/font_size = 50
-text = "Auto"
+text = "Random"
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=873805866]
 offset_left = 1325.0
 offset_top = 346.0
 offset_right = 1459.0
@@ -55,7 +55,7 @@ theme_override_colors/font_color = Color(0, 0.601305, 0.21728995, 1)
 theme_override_font_sizes/font_size = 80
 text = "✓"
 
-[node name="hiddenLabel" type="Label" parent="."]
+[node name="hiddenLabel" type="Label" parent="." unique_id=1939775195]
 offset_left = 636.0
 offset_top = 528.0
 offset_right = 2713.0
@@ -64,7 +64,7 @@ theme_override_fonts/font = ExtResource("2_w4aye")
 theme_override_font_sizes/font_size = 35
 text = "\"Minimum bet is $5.00!\""
 
-[node name="betLabel" type="Label" parent="."]
+[node name="betLabel" type="Label" parent="." unique_id=510693398]
 offset_left = 650.0
 offset_top = 255.0
 offset_right = 1297.0
@@ -73,16 +73,18 @@ theme_override_fonts/font = ExtResource("2_w4aye")
 theme_override_font_sizes/font_size = 60
 text = "Current Bet: $0.00"
 
-[node name="BetSpinBox" type="SpinBox" parent="."]
+[node name="BetSpinBox" type="SpinBox" parent="." unique_id=425498177]
 offset_left = 615.0
 offset_top = 371.0
 offset_right = 1301.0
 offset_bottom = 477.0
+min_value = 5.0
 max_value = 10000.0
 step = 0.05
+value = 100.0
 update_on_text_changed = true
 
 [connection signal="pressed" from="Go-Back" to="." method="_on_go_back_pressed"]
-[connection signal="pressed" from="Auto" to="." method="_on_auto_pressed"]
+[connection signal="pressed" from="Rand" to="." method="_on_auto_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="value_changed" from="BetSpinBox" to="." method="_on_bet_spin_box_value_changed"]
