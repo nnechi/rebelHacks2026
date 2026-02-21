@@ -19,6 +19,9 @@ var currentId:int = 0
 var goalMessage:String = ""
 
 func ShowMessage(text:String, isDealer:bool) -> void:
+	if Global.autoplay_active:
+		return
+	
 	if isDealer:
 		personLabel.get_parent().visible = true
 		dealerImage.visible = true

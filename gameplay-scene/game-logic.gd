@@ -339,7 +339,7 @@ func playerDraw():
 
 
 func _on_exit_pressed():
-	get_tree().change_scene_to_file("res://main-scene/main_scene.tscn")
+	get_tree().change_scene_to_file("res://betting-scene/betting-scene.tscn")
 
 
 func _on_replay_pressed():
