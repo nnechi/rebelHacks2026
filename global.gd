@@ -7,6 +7,10 @@ var games: int = 0
 var wins: int = 0
 var losses: int = 0
 var ties: int = 0
+signal bank_changed(new_bank: float)
+var bank_history: Array[float] = []
+
+
 
 # Dealer / Narration Arrays
 var general_lines = [
@@ -60,3 +64,17 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func push_bank_point(v: float) -> void:
+	bank = v
+	bank_history.append(v)
+	if bank_history.size() > 120:
+		bank_history.pop_front()
+	emit_signal("bank_changed", bank)
+
+
+
+
+
+	
+	

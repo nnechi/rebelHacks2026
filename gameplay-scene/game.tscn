@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cwmyp2viwc1dq"]
 
 [ext_resource type="Script" uid="uid://be8i7rv0xfrr8" path="res://gameplay-scene/game-logic.gd" id="1_n2enm"]
-[ext_resource type="Texture2D" uid="uid://c3j5l71pj5h37" path="res://assets/images/background3.png" id="2_1jfn3"]
+[ext_resource type="Texture2D" uid="uid://bbisiq2oftokt" path="res://assets/images/background3.png" id="2_1jfn3"]
 [ext_resource type="Texture2D" uid="uid://6gukv6mwhmwh" path="res://assets/images/cards_alternatives/card_back_pix.png" id="2_387hk"]
 [ext_resource type="FontFile" uid="uid://cpwm7d3lrhrkk" path="res://assets/PixelifySans-Regular.ttf" id="2_dl2ym"]
 [ext_resource type="FontFile" uid="uid://ddmd7pp0hamna" path="res://assets/PublicPixel.ttf" id="2_sviuc"]
@@ -262,6 +262,13 @@ offset_right = 344.0
 offset_bottom = 259.0
 mouse_filter = 2
 color = Color(0.103743605, 0.103743516, 0.103743516, 1)
+
+[node name="Control" type="Control" parent="LeftMenuBar/Graphs/TopGraph" unique_id=1980863860]
+anchors_preset = 0
+offset_left = -13.0
+offset_top = 2.0
+offset_right = 340.0
+offset_bottom = 262.0
 
 [node name="GameNumber" type="Label" parent="LeftMenuBar/Graphs" unique_id=1969896023]
 visible = false
@@ -867,9 +874,19 @@ offset_right = 253.0
 offset_bottom = 256.0
 texture = ExtResource("8_m3mv0")
 
+[node name="Quit" type="Button" parent="." unique_id=1574273392]
+layout_mode = 0
+offset_left = 1770.0
+offset_right = 1926.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("2_dl2ym")
+theme_override_font_sizes/font_size = 20
+text = "Quit"
+
 [connection signal="pressed" from="Buttons/VBoxContainer/Autoplay" to="." method="_on_autoplay_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/OptimalMove" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/Hit" to="." method="_on_hit_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/Stand" to="." method="_on_stand_pressed"]
 [connection signal="pressed" from="Replay" to="." method="_on_replay_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

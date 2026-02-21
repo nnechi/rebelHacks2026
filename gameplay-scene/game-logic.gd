@@ -14,10 +14,18 @@ var cardsShuffled = {}
 
 var ace_found
 
+@onready var graph_holder = $LeftMenuBar/Graphs/TopGraph/Panel4
+var graph_scene := preload("res://graph/plot_graph.tscn")
+var graph: Control
+
+	
+	
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Dialogue.Initialize()
-
+	var graph = graph_scene.instantiate()
+	graph_holder.add_child(graph)	
 	#call randoizer for card shuffle()
 	randomize()
 	if Global.autoplay_active:
@@ -280,6 +288,8 @@ func playerLose():
 	Global.games+=1
 	Global.losses+=1
 	# Player has lost: display red text, disable buttons, ask to play again
+	Global.bank -= Global.bet
+	Global.push_bank_point(float(Global.bank))
 	$WinnerText.text = "DEALER WINS"
 	$WinnerText.set("theme_override_colors/font_color", "ff5342")
 	$Buttons/VBoxContainer/Hit.disabled = true
@@ -312,6 +322,9 @@ func playerWin(blackjack=false):
 	#$WinnerText.visible = true
 	
 	Dialogue.ShowMessage("You won! Are you card counting???", true)
+	
+	Global.bank -= Global.bet
+	Global.push_bank_point(float(Global.bank))
 	
 	await get_tree().create_timer(0.5).timeout
 	if Global.autoplay_active:
@@ -426,3 +439,7 @@ func _run_autoplay():
 
 		# Brief pause so the player can follow along
 		await get_tree().create_timer(0.8).timeout
+
+
+func _on_quit_pressed() -> void:
+	get_tree().change_scene_to_file("res://main-scene/main_scene.tscn")# Replace with function body.

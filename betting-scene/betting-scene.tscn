@@ -7,8 +7,8 @@
 script = ExtResource("1_1uul2")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=576201822]
-offset_right = 1922.0
-offset_bottom = 1003.0
+offset_right = 1919.0
+offset_bottom = 1073.0
 
 [node name="Label" type="Label" parent="." unique_id=1813123593]
 offset_left = 555.0
@@ -56,10 +56,10 @@ theme_override_font_sizes/font_size = 80
 text = "✓"
 
 [node name="hiddenLabel" type="Label" parent="." unique_id=1939775195]
-offset_left = 636.0
-offset_top = 528.0
-offset_right = 2713.0
-offset_bottom = 611.0
+offset_left = 718.0
+offset_top = 526.0
+offset_right = 2795.0
+offset_bottom = 609.0
 theme_override_fonts/font = ExtResource("2_w4aye")
 theme_override_font_sizes/font_size = 35
 text = "\"Minimum bet is $5.00!\""
