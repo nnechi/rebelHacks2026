@@ -23,15 +23,15 @@ func _ready():
 	# Create cards
 	updateText()
 	create_card_data()
-	
-	# Generate initial 2 player cards	
+
+	# Generate initial 2 player cards
 	await get_tree().create_timer(0.7).timeout
 	generate_card("player")
 	updateText()
 	await get_tree().create_timer(0.5).timeout
 	generate_card("player")
 	updateText()
-	
+
 	# Generate dealers cards; note how first one is true as we want to show the back
 	await get_tree().create_timer(0.5).timeout
 	generate_card("dealer", true)
@@ -40,15 +40,15 @@ func _ready():
 	generate_card("dealer")
 	updateText()
 	await get_tree().create_timer(1).timeout
-	
+
 	if playerScore == 21:
 		playerWin(true)
-	
-	
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-	
+
 func make_wrapped_card(texture_path: String) -> Control:
 	var tex: Texture2D = load(texture_path)
 
@@ -81,7 +81,7 @@ func make_wrapped_card(texture_path: String) -> Control:
 	tween.parallel().tween_property(rect, "scale", Vector2.ONE, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 	return wrapper
-	
+
 func _on_hit_pressed():
 	$PlayerHitMarker.visible = true
 	generate_card("player")
@@ -94,7 +94,7 @@ func _on_hit_pressed():
 		check_aces()  # Check to see if any 11-aces can convert to 1-aces
 		if playerScore > 21:  # Score still surpasses 21
 			playerLose()
-			
+
 
 func check_aces():
 	# If player is over 21 and has any 11-aces, convert them to 1 so they stay under 21
@@ -109,8 +109,8 @@ func check_aces():
 			break  # No more aces to convert, exit loop
 		recalculate_player_score()
 		updateText()
-	
-	
+
+
 func recalculate_player_score():
 	playerScore = 0
 	for card in playerCards:
@@ -125,27 +125,27 @@ func _on_stand_pressed():
 	$Buttons/VBoxContainer/OptimalMove.disabled = true
 	$DealerHitMarker.visible = true
 	$WhoseTurn.text = "Dealer's\nTurn"
-	
+
 	await get_tree().create_timer(0.5).timeout
 	var dealer_hand_container = $Cards/Hands/DealerHand
-	
+
 	# Remove the first card from the container (the back of card texture)
 	var child_to_remove = dealer_hand_container.get_child(0)
 	child_to_remove.queue_free()  # Remove the node from the scene
-	
+
 	# Create a new TextureRect node for the card image
 	var card = dealerCards[0]
 	var wrapper := make_wrapped_card(card[1])
 	dealer_hand_container.add_child(wrapper)
 	dealer_hand_container.move_child(wrapper, 0)
-	
+
 	# Add score to dealerScore
 	if card[0] == 11 and dealerScore > 10:  # Aces are 1 if score is too high for 11
 		dealerScore += 1
 	else:
 		dealerScore += card[0]
 	updateText()
-	
+
 	# Dealer hits until score surpasses player or 17
 	while dealerScore < playerScore and dealerScore < 17:
 		await get_tree().create_timer(1.5).timeout
@@ -153,7 +153,7 @@ func _on_stand_pressed():
 		$AnimationPlayer.play("HitAnimationD")
 		generate_card("dealer")
 		updateText()
-		
+
 	# Evaluate results
 	if dealerScore > 21 or dealerScore < playerScore:  # Dealer bust or dealer less than player
 		playerWin()
@@ -161,8 +161,8 @@ func _on_stand_pressed():
 		playerLose()
 	else:  # Tie
 		playerDraw()
-	
-	
+
+
 func create_card_data():
 	# Generate card names for ranks 2 to 10
 	for rank in range(2, 11):
@@ -177,21 +177,21 @@ func create_card_data():
 			if face_card != "ace":
 				card_values.append(10)
 			else:
-				card_values.append(11)	
-				
-	
+				card_values.append(11)
+
+
 	# Load card values and image paths into the dictionary
 	for card in range(len(card_names)):
-		card_images[card_names[card]] = [card_values[card], 
+		card_images[card_names[card]] = [card_values[card],
 			"res://assets/images/cards_pixel/" + card_names[card] + ".png"]
-		
+
 	#add the the of card image with key "back"
 	card_images["back"] = [0, "res://assets/images/cards_alternatives/card_back_pix.png"]
-	
+
 	cardsShuffled = card_names.duplicate()
 	cardsShuffled.shuffle()
 
-	
+
 func generate_card(hand, back=false):
 	# Assuming you have already loaded card images into the dictionary as shown in your code
 	var random_card
@@ -205,9 +205,9 @@ func generate_card(hand, back=false):
 	else:
 		# Get a random card
 		var random_card_name = cardsShuffled.pop_back()
-		random_card = card_images[random_card_name] 
+		random_card = card_images[random_card_name]
 		# random_card is an array [card value, card image path]
-	
+
 	# Get a reference to the existing HBoxContainer
 	var card_hand_container
 	if hand == "player":
@@ -226,7 +226,7 @@ func generate_card(hand, back=false):
 		dealerCards.append(random_card)
 	else:
 		return
-		
+
 	# Add wrapped card (so container controls wrapper, we animate the inside)
 	var wrapper := make_wrapped_card(random_card[1])
 	card_hand_container.add_child(wrapper)
@@ -249,8 +249,8 @@ func playerLose():
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
 	$Replay.visible = true
-	
-	
+
+
 func playerWin(blackjack=false):
 	# Player has won: display text (already set if not blackjack),
 	# display buttons and ask to play again
@@ -259,13 +259,13 @@ func playerWin(blackjack=false):
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
 	$Buttons/VBoxContainer/OptimalMove.disabled = true
-	
+
 	await get_tree().create_timer(1).timeout
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
 	$Replay.visible = true
-	
-	
+
+
 func playerDraw():
 	# Nobody wins: display white text, disable buttons and ask to play again
 	$WinnerText.text = "DRAW"
@@ -289,12 +289,13 @@ func _on_replay_pressed():
 
 func _on_button_pressed():
 	# AI logic to determine optimal move
-	
+
 	if len(dealerCards) < 2:  # Player clicked button before dealer cards loaded
 		return
-	var dealerUpCard = dealerCards[2][0]
+	# dealerCards[0] is hidden; dealerCards[1] is the face-up card
+	var dealerUpCard = dealerCards[1][0]
 	var hasAce = playerHasAce(playerCards)
-	
+
 	if hasAce:
 		# Handle cases when player has an ace
 		if playerScore >= 19:
@@ -325,7 +326,79 @@ func _on_button_pressed():
 			_on_stand_pressed()
 
 func playerHasAce(cards):
+	# Check for an ace that is still counted as 11 (soft hand)
 	for card in cards:
 		if card[0] == 11:
 			return true
 	return false
+
+
+# ── Autoplay ──────────────────────────────────────────────────────────────────
+
+var _autoplay_active := false
+
+func _on_autoplay_pressed():
+	if _autoplay_active:
+		# Second press: stop autoplay
+		_autoplay_active = false
+		$Buttons/VBoxContainer/Autoplay.text = "Autoplay"
+		return
+
+	_autoplay_active = true
+	$Buttons/VBoxContainer/Autoplay.text = "Stop"
+	_run_autoplay()
+
+
+func _run_autoplay():
+	# Keep making optimal moves until the round ends or autoplay is cancelled.
+	while _autoplay_active:
+		# Round is over when Hit/Stand are both disabled
+		if $Buttons/VBoxContainer/Hit.disabled:
+			_autoplay_active = false
+			$Buttons/VBoxContainer/Autoplay.text = "Autoplay"
+			return
+
+		if len(dealerCards) < 2:
+			await get_tree().create_timer(0.3).timeout
+			continue
+
+		# Determine the optimal move using the same strategy as _on_button_pressed
+		var dealerUpCard = dealerCards[1][0]
+		var hasAce = playerHasAce(playerCards)
+		var should_stand := false
+
+		if hasAce:
+			if playerScore >= 19:
+				should_stand = true
+			elif playerScore == 18 and dealerUpCard <= 8:
+				should_stand = true
+			# else: hit
+		else:
+			if playerScore >= 17 and playerScore <= 20:
+				should_stand = true
+			elif playerScore >= 13 and playerScore <= 16:
+				should_stand = dealerUpCard >= 2 and dealerUpCard <= 6
+			elif playerScore == 12:
+				should_stand = dealerUpCard >= 4 and dealerUpCard <= 6
+			# 4–11: hit; fallthrough: stand
+			elif playerScore < 4 or playerScore > 20:
+				should_stand = true
+
+		# Brief pause so the player can follow along
+		await get_tree().create_timer(0.8).timeout
+
+		# Check again after the delay — buttons may have been disabled by now
+		if $Buttons/VBoxContainer/Hit.disabled:
+			_autoplay_active = false
+			$Buttons/VBoxContainer/Autoplay.text = "Autoplay"
+			return
+
+		if should_stand:
+			_on_stand_pressed()
+			# Stand ends the round — stop autoplay
+			_autoplay_active = false
+			$Buttons/VBoxContainer/Autoplay.text = "Autoplay"
+			return
+		else:
+			_on_hit_pressed()
+			# After a hit the loop continues and will re-evaluate next tick
