@@ -1,12 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://d11lim1u2e24i"]
+[gd_scene format=3 uid="uid://d11lim1u2e24i"]
 
 [ext_resource type="Script" uid="uid://be8i7rv0xfrr8" path="res://gameplay-scene/game-logic.gd" id="1_n2enm"]
 [ext_resource type="Texture2D" uid="uid://bbisiq2oftokt" path="res://assets/images/background3.png" id="2_1jfn3"]
 [ext_resource type="Texture2D" uid="uid://6gukv6mwhmwh" path="res://assets/images/cards_alternatives/card_back_pix.png" id="2_387hk"]
 [ext_resource type="FontFile" uid="uid://cpwm7d3lrhrkk" path="res://assets/PixelifySans-Regular.ttf" id="2_dl2ym"]
 [ext_resource type="FontFile" uid="uid://ddmd7pp0hamna" path="res://assets/PublicPixel.ttf" id="2_sviuc"]
-[ext_resource type="LabelSettings" uid="uid://y0n1omgt4mxo" path="res://assets/new_label_settings.tres" id="4_kegfm"]
+[ext_resource type="LabelSettings" path="res://assets/new_label_settings.tres" id="4_kegfm"]
 [ext_resource type="Texture2D" uid="uid://dqdlwn6wx6w18" path="res://assets/images/arrow.png" id="6_e65rd"]
+[ext_resource type="Texture2D" uid="uid://cgh5agpq8gigh" path="res://assets/images/girlll2.png" id="8_m3mv0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kegfm"]
+font_size = 40
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.5921569)
+shadow_offset = Vector2(4, 4)
 
 [sub_resource type="Animation" id="Animation_1h22c"]
 resource_name = "HitAnimationD"
@@ -68,10 +75,14 @@ _data = {
 &"HitAnimationP": SubResource("Animation_4r27c")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_kegfm"]
+[sub_resource type="LabelSettings" id="LabelSettings_m3mv0"]
+font_size = 36
+shadow_color = Color(0, 0, 0, 0.5176471)
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_387hk"]
 font_size = 40
-shadow_size = 0
-shadow_color = Color(0, 0, 0, 0.5921569)
+shadow_color = Color(0, 0, 0, 0.6117647)
 shadow_offset = Vector2(4, 4)
 
 [sub_resource type="LabelSettings" id="LabelSettings_e65rd"]
@@ -79,7 +90,17 @@ font_size = 72
 shadow_color = Color(0, 0, 0, 0.6039216)
 shadow_offset = Vector2(4, 4)
 
-[node name="Gameplay" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_bwecg"]
+font_size = 42
+shadow_color = Color(0, 0, 0, 0.5568628)
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fqy1j"]
+font_size = 64
+shadow_color = Color(0, 0, 0, 0.8745098)
+shadow_offset = Vector2(4, 4)
+
+[node name="Gameplay" type="Control" unique_id=258634767]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -88,7 +109,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n2enm")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1248287485]
 z_index = 6
 z_as_relative = false
 texture_filter = 1
@@ -100,7 +121,7 @@ offset_bottom = 1387.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_387hk")
 
-[node name="Shadow" type="ColorRect" parent="TextureRect"]
+[node name="Shadow" type="ColorRect" parent="TextureRect" unique_id=1875909174]
 show_behind_parent = true
 z_index = 2
 z_as_relative = false
@@ -112,7 +133,7 @@ offset_bottom = 764.0
 mouse_filter = 2
 color = Color(0.3019608, 0.34117648, 0.4, 1)
 
-[node name="Shadow" type="ColorRect" parent="TextureRect/Shadow"]
+[node name="Shadow" type="ColorRect" parent="TextureRect/Shadow" unique_id=933029962]
 show_behind_parent = true
 z_index = 2
 z_as_relative = false
@@ -124,7 +145,7 @@ offset_bottom = 736.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.39215687)
 
-[node name="LeftMenuBar" type="ColorRect" parent="."]
+[node name="LeftMenuBar" type="ColorRect" parent="." unique_id=692948149]
 show_behind_parent = true
 z_index = 1
 layout_mode = 0
@@ -135,7 +156,7 @@ offset_bottom = 1109.0
 mouse_filter = 2
 color = Color(0.22670761, 0.22670746, 0.22670746, 1)
 
-[node name="ActualDecoration" type="ColorRect" parent="LeftMenuBar"]
+[node name="ActualDecoration" type="ColorRect" parent="LeftMenuBar" unique_id=1842281919]
 show_behind_parent = true
 z_index = 1
 layout_mode = 0
@@ -146,7 +167,7 @@ offset_bottom = 1160.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.29803923)
 
-[node name="ShadowDecoration" type="ColorRect" parent="LeftMenuBar"]
+[node name="ShadowDecoration" type="ColorRect" parent="LeftMenuBar" unique_id=329908255]
 show_behind_parent = true
 z_index = 1
 layout_mode = 0
@@ -156,62 +177,62 @@ offset_bottom = 1136.0
 mouse_filter = 2
 color = Color(0.7569886, 0.53034824, 0.14240357, 1)
 
-[node name="Panel" type="ColorRect" parent="LeftMenuBar"]
+[node name="Panel" type="ColorRect" parent="LeftMenuBar" unique_id=811323331]
 show_behind_parent = true
 z_index = 1
 layout_mode = 0
 offset_left = 18.0
 offset_top = 41.0
 offset_right = 378.0
-offset_bottom = 528.0
+offset_bottom = 454.0
 mouse_filter = 2
 color = Color(0.16565654, 0.16565633, 0.16565648, 1)
 
-[node name="Shadow" type="ColorRect" parent="LeftMenuBar/Panel"]
+[node name="Shadow" type="ColorRect" parent="LeftMenuBar/Panel" unique_id=745853665]
 show_behind_parent = true
 z_index = 2
 z_as_relative = false
 layout_mode = 0
 offset_left = 6.0
 offset_right = 366.0
-offset_bottom = 494.0
+offset_bottom = 420.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.39215687)
 
-[node name="Panel2" type="ColorRect" parent="LeftMenuBar"]
+[node name="Graphs" type="ColorRect" parent="LeftMenuBar" unique_id=1656665117]
 show_behind_parent = true
 z_index = 1
 layout_mode = 0
 offset_left = 18.0
-offset_top = 549.0
+offset_top = 472.0
 offset_right = 378.0
-offset_bottom = 1110.0
+offset_bottom = 1096.0
 mouse_filter = 2
 color = Color(0.16565654, 0.16565633, 0.16565648, 1)
 
-[node name="Shadow" type="ColorRect" parent="LeftMenuBar/Panel2"]
+[node name="Shadow" type="ColorRect" parent="LeftMenuBar/Graphs" unique_id=1873034265]
 show_behind_parent = true
 z_index = 2
 z_as_relative = false
 layout_mode = 0
 offset_left = 6.0
 offset_right = 366.0
-offset_bottom = 568.0
+offset_bottom = 632.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.39215687)
 
-[node name="Panel3" type="ColorRect" parent="LeftMenuBar/Panel2"]
+[node name="BottomGraph" type="ColorRect" parent="LeftMenuBar/Graphs" unique_id=1747426244]
 show_behind_parent = true
 z_index = 1
 layout_mode = 0
 offset_left = 14.0
-offset_top = 286.0
+offset_top = 358.0
 offset_right = 352.0
-offset_bottom = 539.0
+offset_bottom = 611.0
 mouse_filter = 2
 color = Color(0.11858133, 0.11858139, 0.11858136, 1)
 
-[node name="Panel4" type="ColorRect" parent="LeftMenuBar/Panel2/Panel3"]
+[node name="Panel4" type="ColorRect" parent="LeftMenuBar/Graphs/BottomGraph" unique_id=1678955901]
 show_behind_parent = true
 layout_mode = 0
 offset_left = 6.0
@@ -221,18 +242,18 @@ offset_bottom = 259.0
 mouse_filter = 2
 color = Color(0.103743605, 0.103743516, 0.103743516, 1)
 
-[node name="Panel4" type="ColorRect" parent="LeftMenuBar/Panel2"]
+[node name="TopGraph" type="ColorRect" parent="LeftMenuBar/Graphs" unique_id=1358252367]
 show_behind_parent = true
 z_index = 1
 layout_mode = 0
 offset_left = 14.0
-offset_top = 15.0
+offset_top = 87.0
 offset_right = 352.0
-offset_bottom = 268.0
+offset_bottom = 340.0
 mouse_filter = 2
 color = Color(0.11858133, 0.11858139, 0.11858136, 1)
 
-[node name="Panel4" type="ColorRect" parent="LeftMenuBar/Panel2/Panel4"]
+[node name="Panel4" type="ColorRect" parent="LeftMenuBar/Graphs/TopGraph" unique_id=616603478]
 show_behind_parent = true
 layout_mode = 0
 offset_left = 6.0
@@ -242,7 +263,50 @@ offset_bottom = 259.0
 mouse_filter = 2
 color = Color(0.103743605, 0.103743516, 0.103743516, 1)
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="GameNumber" type="Label" parent="LeftMenuBar/Graphs" unique_id=1969896023]
+z_index = 5
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 55.0
+offset_top = -295.0
+offset_right = -46.0
+offset_bottom = -235.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_dl2ym")
+theme_override_font_sizes/font_size = 41
+text = "Game 3"
+label_settings = SubResource("LabelSettings_kegfm")
+horizontal_alignment = 1
+
+[node name="Panel" type="ColorRect" parent="LeftMenuBar/Graphs/GameNumber" unique_id=154057497]
+show_behind_parent = true
+z_index = 3
+z_as_relative = false
+layout_mode = 0
+offset_left = -46.0
+offset_top = -10.0
+offset_right = 302.0
+offset_bottom = 54.0
+mouse_filter = 2
+color = Color(0.27232337, 0.28022948, 0.27254915, 1)
+
+[node name="Shadow" type="ColorRect" parent="LeftMenuBar/Graphs/GameNumber" unique_id=20041662]
+show_behind_parent = true
+z_index = 2
+z_as_relative = false
+layout_mode = 0
+offset_left = -41.0
+offset_top = -5.0
+offset_right = 307.0
+offset_bottom = 59.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="Background" type="TextureRect" parent="." unique_id=1737543813]
 texture_filter = 1
 layout_mode = 0
 offset_top = -3.0
@@ -250,7 +314,7 @@ offset_right = 1923.0
 offset_bottom = 1079.0
 texture = ExtResource("2_1jfn3")
 
-[node name="Buttons" type="MarginContainer" parent="."]
+[node name="Buttons" type="MarginContainer" parent="." unique_id=882015635]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.81927085
@@ -261,19 +325,19 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons" unique_id=731969927]
 layout_mode = 2
 theme_override_constants/separation = 13
 alignment = 2
 
-[node name="Stand" type="Button" parent="Buttons/VBoxContainer"]
+[node name="Stand" type="Button" parent="Buttons/VBoxContainer" unique_id=1107896457]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 25
 text = "STAND"
 
-[node name="OptimalMove" type="Button" parent="Buttons/VBoxContainer"]
+[node name="OptimalMove" type="Button" parent="Buttons/VBoxContainer" unique_id=346989057]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_sviuc")
@@ -283,21 +347,21 @@ text = "OPTIMAL
 MOVE
 "
 
-[node name="Autoplay" type="Button" parent="Buttons/VBoxContainer"]
+[node name="Autoplay" type="Button" parent="Buttons/VBoxContainer" unique_id=1899037]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 25
 text = "AUTOPLAY"
 
-[node name="Hit" type="Button" parent="Buttons/VBoxContainer"]
+[node name="Hit" type="Button" parent="Buttons/VBoxContainer" unique_id=1357683371]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 25
 text = "HIT"
 
-[node name="Cards" type="MarginContainer" parent="."]
+[node name="Cards" type="MarginContainer" parent="." unique_id=551405534]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.145
@@ -313,22 +377,22 @@ scale = Vector2(0.5, 0.5)
 theme_override_constants/margin_top = 45
 theme_override_constants/margin_bottom = 45
 
-[node name="Hands" type="VBoxContainer" parent="Cards"]
+[node name="Hands" type="VBoxContainer" parent="Cards" unique_id=1513250113]
 layout_mode = 2
 theme_override_constants/separation = 630
 alignment = 2
 
-[node name="DealerHand" type="HBoxContainer" parent="Cards/Hands"]
+[node name="DealerHand" type="HBoxContainer" parent="Cards/Hands" unique_id=851296763]
 layout_mode = 2
 theme_override_constants/separation = 36
 alignment = 1
 
-[node name="PlayerHand" type="HBoxContainer" parent="Cards/Hands"]
+[node name="PlayerHand" type="HBoxContainer" parent="Cards/Hands" unique_id=1493044800]
 layout_mode = 2
 theme_override_constants/separation = 36
 alignment = 1
 
-[node name="DealerScore" type="Label" parent="."]
+[node name="DealerScore" type="Label" parent="." unique_id=1951179018]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -343,7 +407,7 @@ theme_override_font_sizes/font_size = 42
 label_settings = ExtResource("4_kegfm")
 horizontal_alignment = 1
 
-[node name="PlayerScore" type="Label" parent="."]
+[node name="PlayerScore" type="Label" parent="." unique_id=138871441]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -358,7 +422,7 @@ theme_override_font_sizes/font_size = 42
 label_settings = ExtResource("4_kegfm")
 horizontal_alignment = 1
 
-[node name="NumberBar" type="ColorRect" parent="."]
+[node name="NumberBar" type="ColorRect" parent="." unique_id=489926828]
 show_behind_parent = true
 light_mask = 512
 visibility_layer = 512
@@ -370,7 +434,7 @@ offset_bottom = 1100.0
 mouse_filter = 2
 color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 
-[node name="NumberBar2" type="ColorRect" parent="."]
+[node name="NumberBar2" type="ColorRect" parent="." unique_id=176722514]
 show_behind_parent = true
 light_mask = 512
 visibility_layer = 512
@@ -382,7 +446,7 @@ offset_bottom = 587.0
 mouse_filter = 2
 color = Color(0.101961, 0.101961, 0.101961, 1)
 
-[node name="PlayerHitMarker" type="Label" parent="."]
+[node name="PlayerHitMarker" type="Label" parent="." unique_id=601710700]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.083
@@ -396,7 +460,7 @@ theme_override_fonts/font = ExtResource("2_dl2ym")
 theme_override_font_sizes/font_size = 80
 text = "hit!"
 
-[node name="DealerHitMarker" type="Label" parent="."]
+[node name="DealerHitMarker" type="Label" parent="." unique_id=1207056962]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.083
@@ -410,55 +474,54 @@ theme_override_fonts/font = ExtResource("2_dl2ym")
 theme_override_font_sizes/font_size = 80
 text = "hit!"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_6250x")
-}
-autoplay = "HitAnimationD"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1467702902]
+libraries/ = SubResource("AnimationLibrary_6250x")
+autoplay = &"HitAnimationD"
 
-[node name="WhoseTurn" type="Label" parent="."]
+[node name="WhoseTurn" type="Label" parent="." unique_id=1269411367]
 z_index = 5
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 63.0
+offset_left = -18.0
 offset_top = -509.0
-offset_right = -1591.0
+offset_right = -1518.0
 offset_bottom = -377.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_dl2ym")
 theme_override_font_sizes/font_size = 41
 text = "Player's Turn"
-label_settings = SubResource("LabelSettings_kegfm")
+label_settings = SubResource("LabelSettings_m3mv0")
+horizontal_alignment = 1
 
-[node name="Panel" type="ColorRect" parent="WhoseTurn"]
+[node name="Panel" type="ColorRect" parent="WhoseTurn" unique_id=1237335698]
 show_behind_parent = true
 z_index = 3
 z_as_relative = false
 layout_mode = 0
-offset_left = -46.0
+offset_left = 35.0
 offset_top = -10.0
-offset_right = 302.0
+offset_right = 383.0
 offset_bottom = 54.0
 mouse_filter = 2
 color = Color(0.75686276, 0.5294118, 0.14117648, 1)
 
-[node name="Shadow" type="ColorRect" parent="WhoseTurn"]
+[node name="Shadow" type="ColorRect" parent="WhoseTurn" unique_id=1778232349]
 show_behind_parent = true
 z_index = 2
 z_as_relative = false
 layout_mode = 0
-offset_left = -41.0
+offset_left = 40.0
 offset_top = -5.0
-offset_right = 307.0
+offset_right = 388.0
 offset_bottom = 59.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.39215687)
 
-[node name="WinnerText" type="Label" parent="."]
+[node name="WinnerText" type="Label" parent="." unique_id=836478919]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 440.0
@@ -471,7 +534,7 @@ text = "PLAYER
 WINS"
 vertical_alignment = 1
 
-[node name="Replay" type="Button" parent="."]
+[node name="Replay" type="Button" parent="." unique_id=1497613106]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 630.0
@@ -484,20 +547,20 @@ text = "PLAY
 AGAIN"
 alignment = 0
 
-[node name="Exit" type="Button" parent="."]
+[node name="Exit" type="Button" parent="." unique_id=1674084392]
 z_index = 2
 layout_mode = 0
 offset_left = 48.0
-offset_top = 356.0
+offset_top = 328.0
 offset_right = 341.0
-offset_bottom = 463.0
+offset_bottom = 406.0
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 0.556863, 0.494118, 1)
 theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 25
 text = "EXIT"
 
-[node name="BalanceLabel" type="Label" parent="."]
+[node name="BalanceLabel" type="Label" parent="." unique_id=2147090261]
 z_index = 5
 layout_mode = 1
 anchors_preset = 14
@@ -512,10 +575,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_dl2ym")
 theme_override_font_sizes/font_size = 41
-text = "     BALANCE"
-label_settings = SubResource("LabelSettings_kegfm")
+text = "      BALANCE"
+label_settings = SubResource("LabelSettings_387hk")
 
-[node name="Panel" type="ColorRect" parent="BalanceLabel"]
+[node name="Panel" type="ColorRect" parent="BalanceLabel" unique_id=1718210206]
 show_behind_parent = true
 z_index = 3
 z_as_relative = false
@@ -527,7 +590,7 @@ offset_bottom = 197.0
 mouse_filter = 2
 color = Color(0.4853196, 0.33334464, 0.07247136, 1)
 
-[node name="Shadow" type="ColorRect" parent="BalanceLabel"]
+[node name="Shadow" type="ColorRect" parent="BalanceLabel" unique_id=416761691]
 show_behind_parent = true
 z_index = 2
 z_as_relative = false
@@ -539,7 +602,7 @@ offset_bottom = 204.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.39215687)
 
-[node name="BalanceValue" type="Label" parent="BalanceLabel"]
+[node name="BalanceValue" type="Label" parent="BalanceLabel" unique_id=868343049]
 z_index = 5
 layout_mode = 1
 anchors_preset = 14
@@ -558,7 +621,7 @@ text = "     $2000"
 label_settings = SubResource("LabelSettings_e65rd")
 horizontal_alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="BalanceLabel"]
+[node name="TextureRect" type="TextureRect" parent="BalanceLabel" unique_id=784008283]
 z_index = 6
 z_as_relative = false
 texture_filter = 1
@@ -569,7 +632,7 @@ offset_right = 73.0
 offset_bottom = 170.0
 texture = ExtResource("6_e65rd")
 
-[node name="Shadow" type="TextureRect" parent="BalanceLabel/TextureRect"]
+[node name="Shadow" type="TextureRect" parent="BalanceLabel/TextureRect" unique_id=311915119]
 modulate = Color(0, 0, 0, 0.39215687)
 z_index = 5
 z_as_relative = false
@@ -580,6 +643,76 @@ offset_top = 4.0
 offset_right = 128.0
 offset_bottom = 128.0
 texture = ExtResource("6_e65rd")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1205941927]
+z_index = 10
+layout_mode = 0
+offset_left = 407.0
+offset_top = 825.0
+offset_right = 1536.0
+offset_bottom = 1029.0
+color = Color(0, 0, 0, 0.88235295)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect" unique_id=1138697945]
+z_index = 10
+layout_mode = 0
+offset_top = -91.0
+offset_right = 253.0
+offset_bottom = -31.0
+color = Color(0, 0, 0, 0.88235295)
+
+[node name="BalanceValue" type="Label" parent="ColorRect/ColorRect" unique_id=1611983035]
+z_index = 5
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 12.0
+offset_top = -24.0
+offset_right = -34.0
+offset_bottom = 156.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_dl2ym")
+theme_override_font_sizes/font_size = 41
+text = "Dealer"
+label_settings = SubResource("LabelSettings_bwecg")
+
+[node name="BalanceValue" type="Label" parent="ColorRect" unique_id=99627992]
+z_index = 5
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 12.0
+offset_top = -87.0
+offset_right = -34.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_dl2ym")
+theme_override_font_sizes/font_size = 41
+text = "Everyone's a winner in vegas."
+label_settings = SubResource("LabelSettings_fqy1j")
+
+[node name="ColorRect2" type="ColorRect" parent="ColorRect" unique_id=1962033622]
+z_index = 10
+layout_mode = 0
+offset_left = 876.0
+offset_top = -287.0
+offset_right = 1129.0
+offset_bottom = -31.0
+color = Color(0, 0, 0, 0.88235295)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/ColorRect2" unique_id=286263924]
+texture_filter = 1
+layout_mode = 0
+offset_top = -6.0
+offset_right = 253.0
+offset_bottom = 256.0
+texture = ExtResource("8_m3mv0")
 
 [connection signal="pressed" from="Buttons/VBoxContainer/Stand" to="." method="_on_stand_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/OptimalMove" to="." method="_on_button_pressed"]
