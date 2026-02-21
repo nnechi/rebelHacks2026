@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d11lim1u2e24i"]
+[gd_scene format=3 uid="uid://d11lim1u2e24i"]
 
 [ext_resource type="Script" uid="uid://be8i7rv0xfrr8" path="res://gameplay-scene/game-logic.gd" id="1_n2enm"]
 [ext_resource type="Texture2D" uid="uid://bbisiq2oftokt" path="res://assets/images/background3.png" id="2_1jfn3"]
@@ -65,7 +65,7 @@ _data = {
 &"HitAnimationP": SubResource("Animation_4r27c")
 }
 
-[node name="Gameplay" type="Control"]
+[node name="Gameplay" type="Control" unique_id=461524963]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,7 +74,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n2enm")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1913695972]
 texture_filter = 1
 layout_mode = 0
 offset_top = -3.0
@@ -82,7 +82,7 @@ offset_right = 1923.0
 offset_bottom = 1079.0
 texture = ExtResource("2_1jfn3")
 
-[node name="Buttons" type="MarginContainer" parent="."]
+[node name="Buttons" type="MarginContainer" parent="." unique_id=302720346]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.8625
@@ -93,26 +93,26 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Buttons" unique_id=1530846290]
 layout_mode = 2
 theme_override_constants/separation = 13
 alignment = 2
 
-[node name="Hit" type="Button" parent="Buttons/VBoxContainer"]
+[node name="Hit" type="Button" parent="Buttons/VBoxContainer" unique_id=1029292369]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 25
 text = "HIT"
 
-[node name="Stand" type="Button" parent="Buttons/VBoxContainer"]
+[node name="Stand" type="Button" parent="Buttons/VBoxContainer" unique_id=145734488]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 25
 text = "STAND"
 
-[node name="OptimalMove" type="Button" parent="Buttons/VBoxContainer"]
+[node name="OptimalMove" type="Button" parent="Buttons/VBoxContainer" unique_id=1779609178]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_sviuc")
@@ -122,14 +122,14 @@ text = "OPTIMAL
 MOVE
 "
 
-[node name="Autoplay" type="Button" parent="Buttons/VBoxContainer"]
+[node name="Autoplay" type="Button" parent="Buttons/VBoxContainer" unique_id=260006534]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 25
 text = "AUTOPLAY"
 
-[node name="Cards" type="MarginContainer" parent="."]
+[node name="Cards" type="MarginContainer" parent="." unique_id=1798171894]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.145
@@ -145,20 +145,20 @@ scale = Vector2(0.5, 0.5)
 theme_override_constants/margin_top = 45
 theme_override_constants/margin_bottom = 45
 
-[node name="Hands" type="VBoxContainer" parent="Cards"]
+[node name="Hands" type="VBoxContainer" parent="Cards" unique_id=2124432010]
 layout_mode = 2
 theme_override_constants/separation = 630
 alignment = 2
 
-[node name="DealerHand" type="HBoxContainer" parent="Cards/Hands"]
+[node name="DealerHand" type="HBoxContainer" parent="Cards/Hands" unique_id=1511860244]
 layout_mode = 2
 alignment = 1
 
-[node name="PlayerHand" type="HBoxContainer" parent="Cards/Hands"]
+[node name="PlayerHand" type="HBoxContainer" parent="Cards/Hands" unique_id=853854171]
 layout_mode = 2
 alignment = 1
 
-[node name="DealerScore" type="Label" parent="."]
+[node name="DealerScore" type="Label" parent="." unique_id=1857831368]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -172,7 +172,7 @@ theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 42
 horizontal_alignment = 1
 
-[node name="PlayerScore" type="Label" parent="."]
+[node name="PlayerScore" type="Label" parent="." unique_id=635960272]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -186,7 +186,7 @@ theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 42
 horizontal_alignment = 1
 
-[node name="NumberBar" type="ColorRect" parent="."]
+[node name="NumberBar" type="ColorRect" parent="." unique_id=469576570]
 show_behind_parent = true
 light_mask = 512
 visibility_layer = 512
@@ -198,7 +198,7 @@ offset_bottom = 1100.0
 mouse_filter = 2
 color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 
-[node name="NumberBar2" type="ColorRect" parent="."]
+[node name="NumberBar2" type="ColorRect" parent="." unique_id=1584794819]
 show_behind_parent = true
 light_mask = 512
 visibility_layer = 512
@@ -210,7 +210,7 @@ offset_bottom = 587.0
 mouse_filter = 2
 color = Color(0.101961, 0.101961, 0.101961, 1)
 
-[node name="RightMenuBar" type="ColorRect" parent="."]
+[node name="RightMenuBar" type="ColorRect" parent="." unique_id=1103407861]
 show_behind_parent = true
 light_mask = 512
 visibility_layer = 512
@@ -222,7 +222,7 @@ offset_bottom = 1106.0
 mouse_filter = 2
 color = Color(0.168627, 0.168627, 0.168627, 1)
 
-[node name="PlayerHitMarker" type="Label" parent="."]
+[node name="PlayerHitMarker" type="Label" parent="." unique_id=2111396745]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.083
@@ -236,7 +236,7 @@ theme_override_fonts/font = ExtResource("2_dl2ym")
 theme_override_font_sizes/font_size = 80
 text = "hit!"
 
-[node name="DealerHitMarker" type="Label" parent="."]
+[node name="DealerHitMarker" type="Label" parent="." unique_id=877381873]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.083
@@ -250,13 +250,11 @@ theme_override_fonts/font = ExtResource("2_dl2ym")
 theme_override_font_sizes/font_size = 80
 text = "hit!"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_6250x")
-}
-autoplay = "HitAnimationD"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=992627563]
+libraries/ = SubResource("AnimationLibrary_6250x")
+autoplay = &"HitAnimationD"
 
-[node name="WhoseTurn" type="Label" parent="."]
+[node name="WhoseTurn" type="Label" parent="." unique_id=1544465127]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -272,7 +270,7 @@ theme_override_font_sizes/font_size = 41
 text = "Player's
 Turn"
 
-[node name="WinnerText" type="Label" parent="."]
+[node name="WinnerText" type="Label" parent="." unique_id=1388407024]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 440.0
@@ -285,7 +283,7 @@ text = "PLAYER
 WINS"
 vertical_alignment = 1
 
-[node name="Replay" type="Button" parent="."]
+[node name="Replay" type="Button" parent="." unique_id=1411754324]
 layout_mode = 0
 offset_left = 78.0
 offset_top = 630.0
@@ -298,7 +296,7 @@ text = "PLAY
 AGAIN"
 alignment = 0
 
-[node name="Exit" type="Button" parent="."]
+[node name="Exit" type="Button" parent="." unique_id=2122040480]
 layout_mode = 0
 offset_left = 1656.0
 offset_top = 951.0

@@ -15,6 +15,8 @@ var ace_found
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#call randoizer for card shuffle()
+	randomize()
 	$Replay.visible = false
 	$WinnerText.visible = false
 	$PlayerHitMarker.visible = false
@@ -153,7 +155,7 @@ func _on_stand_pressed():
 	updateText()
 
 	# Dealer hits until score surpasses player or 17 
-	while dealerScore < playerScore or (dealerScore == 17 and dealerHasSoftAce()): 
+	while dealerScore < playerScore or dealerScore < 17 or(dealerScore <= 17 and dealerHasSoftAce()): 
 		await get_tree().create_timer(1.5).timeout
 		# Play "hit!" animation for dealer
 		$AnimationPlayer.play("HitAnimationD")
