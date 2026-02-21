@@ -116,7 +116,13 @@ func recalculate_player_score():
 	for card in playerCards:
 		playerScore += card[0]
 
-
+###
+func dealerHasSoftAce() -> bool:
+	for card in dealerCards:
+		if card[0] == 11:
+			return true
+	return false
+#####
 
 func _on_stand_pressed():
 	# Flip dealer's first card, dealer keeps hitting until score is above 16 or player's score
@@ -146,8 +152,8 @@ func _on_stand_pressed():
 		dealerScore += card[0]
 	updateText()
 
-	# Dealer hits until score surpasses player or 17
-	while dealerScore < playerScore and dealerScore < 17:
+	# Dealer hits until score surpasses player or 17 
+	while dealerScore < playerScore or (dealerScore == 17 and dealerHasSoftAce()): 
 		await get_tree().create_timer(1.5).timeout
 		# Play "hit!" animation for dealer
 		$AnimationPlayer.play("HitAnimationD")
