@@ -19,7 +19,10 @@ func _ready() -> void:
 	print("Graph global pos: ", global_position)
 	print("Bank history: ", Global.bank_history)
 
-	# live updates
+	values = Global.bank_history.duplicate()
+	_recompute_range()
+	queue_redraw()
+	
 	Global.bank_changed.connect(_on_bank_changed)
 
 func _on_bank_changed(new_bank: float) -> void:
@@ -38,15 +41,12 @@ func _recompute_range() -> void:
 	min_y = values.min()
 	max_y = values.max()
 
-	if is_equal_approx(min_y, max_y):
-		max_y = min_y + 1.0
-	else:
-		var m := (max_y - min_y) * 0.1
-		min_y -= m
-		max_y += m
+	min_y = 0.0 
+	max_y = maxf(values.max(), 10000) * 1.1
 
 func _draw() -> void:
 	# background
+	print("Drawing values: ", values)
 	draw_rect(Rect2(Vector2.ZERO, size), Color(0, 0, 0, 0.25), true)
 
 	if size.x <= 2.0 * padding or size.y <= 2.0 * padding:
@@ -72,12 +72,14 @@ func _draw() -> void:
 		return
 
 	# scatter points (fixed x spacing by max_points so early dots don't jump to far right)
-	var n := values.size() 
-	for i in range(n):
-		var x_t : float = float(i) / max(float(n-1), 1.0)
-		var x := inner.position.x + x_t * inner.size.x
+	var pixels_per_point := 3.0  # adjust this to control spacing
+	var max_visible = int(inner.size.x / pixels_per_point)
+	var n := values.size()
+	var start : int = max(0, n - max_visible)
+	
+	for i in range(start, n):
+		var x := inner.position.x + float(i-start) * pixels_per_point
 		var v = values[i]
-		var yn : float = (v - min_y) / (max_y - min_y)
-		yn = clamp(yn, 0.0, 1.0)
-		var y = inner.position.y + (1.0-yn) * inner.size.y
+		var yn : float = clamp((v - min_y)/max_y-min_y, 0.0, 1.0) 
+		var y = inner.position.y + (1.00 - yn) * inner.size.y
 		draw_circle(Vector2(x,y), point_radius, Color(1,1,1,1))
