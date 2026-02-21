@@ -339,7 +339,7 @@ offset_top = -10.0
 offset_right = 179.0
 offset_bottom = 54.0
 mouse_filter = 2
-color = Color(0, 0.5764706, 0.99215686, 1)
+color = Color(1.1551381e-06, 0.6932462, 0.22095573, 1)
 
 [node name="Shadow" type="ColorRect" parent="LeftMenuBar/Graphs/Wins" unique_id=172425999]
 show_behind_parent = true

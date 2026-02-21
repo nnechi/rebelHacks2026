@@ -38,10 +38,6 @@ func _ready():
 	# Create cards
 	updateText()
 	create_card_data()
-	
-	#DEBUG print bank
-	print(Global.bank)
-
 
 	# Generate initial 2 player cards
 	await get_tree().create_timer(0.7).timeout
@@ -59,16 +55,18 @@ func _ready():
 	generate_card("dealer")
 	updateText()
 	await get_tree().create_timer(1).timeout
-
-	if playerScore == 21:
+	var tempScore: int = dealerScore + dealerCards[1]
+	
+	if playerScore == 21 and not tempScore == 21:
 		playerWin(true)
-		
+	if playerScore == 21 and  tempScore == 21:
+		playerDraw()
 	if Global.autoplay_active:
 		_run_autoplay()
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func make_wrapped_card(texture_path: String) -> Control:
@@ -186,7 +184,7 @@ func _on_stand_pressed():
 	updateText()
 
 	# Dealer hits until score surpasses player or 17 
-	while dealerScore < playerScore or dealerScore < 17 or(dealerScore <= 17 and dealerHasSoftAce()): 
+	while (dealerScore < playerScore && dealerScore < 17 ) or(dealerScore <= 17 and dealerHasSoftAce()): 
 		await get_tree().create_timer(1.5).timeout
 		# Play "hit!" animation for dealer
 		$AnimationPlayer.play("HitAnimationD")
