@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://b2wrgyetcvlpg"]
 
 [ext_resource type="Script" uid="uid://bnpdx4jgis0am" path="res://main-scene/main_scene.gd" id="1_dg3ai"]
-[ext_resource type="Texture2D" uid="uid://c3j5l71pj5h37" path="res://assets/images/background3.png" id="2_agv4w"]
+[ext_resource type="Texture2D" uid="uid://c1hecuiouhn8n" path="res://assets/images/background3.png" id="2_agv4w"]
 [ext_resource type="FontFile" uid="uid://cpwm7d3lrhrkk" path="res://assets/PixelifySans-Regular.ttf" id="3_agv4w"]
-[ext_resource type="Texture2D" uid="uid://pkqi8pa3yaj2" path="res://assets/images/front.png" id="4_i2n5r"]
+[ext_resource type="Texture2D" uid="uid://dw5aedl8ndco" path="res://assets/images/front.png" id="4_i2n5r"]
+[ext_resource type="FontFile" uid="uid://ddmd7pp0hamna" path="res://assets/PublicPixel.ttf" id="5_f3pcb"]
 
 [node name="Menu" type="Control" unique_id=1915823750]
 layout_mode = 3
@@ -75,16 +76,26 @@ offset_right = 444.0
 offset_bottom = 1127.0
 theme_override_colors/font_color = Color(0.894118, 0.894118, 0.894118, 1)
 theme_override_font_sizes/font_size = 20
-text = "By Braedon McRae & Andrew Meier
-"
+text = "By Ivan Chen, Isaac Chen, Noah Chio, Felix Ghirlando, and Herman Toledo"
 
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=1801165134]
 layout_mode = 0
-offset_left = 554.0
-offset_top = 238.0
-offset_right = 1225.0
-offset_bottom = 808.0
+offset_left = 541.0
+offset_top = 150.0
+offset_right = 1355.0
+offset_bottom = 861.0
 texture = ExtResource("4_i2n5r")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1492794087]
+layout_mode = 0
+offset_left = 1363.0
+offset_top = 885.0
+offset_right = 1888.0
+offset_bottom = 1031.0
+theme_override_colors/default_color = Color(0.69411767, 0.007843138, 0.007843138, 1)
+theme_override_fonts/normal_font = ExtResource("5_f3pcb")
+theme_override_font_sizes/normal_font_size = 125
+text = "UNLV"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/CloseGame" to="." method="_on_close_game_pressed"]
