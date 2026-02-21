@@ -196,7 +196,7 @@ func _on_stand_pressed():
 	updateText()
 
 	# Dealer hits until score surpasses player or 17 
-	while (dealerScore < playerScore && dealerScore < 17 ) or(dealerScore <= 17 and dealerHasSoftAce()): 
+	while (dealerScore < playerScore and dealerScore < 17 ) or(dealerScore <= 17 and dealerHasSoftAce()): 
 		await get_tree().create_timer(1.5).timeout
 		# Play "hit!" animation for dealer
 		$AnimationPlayer.play("HitAnimationD")
