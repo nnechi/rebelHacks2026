@@ -56,25 +56,36 @@ func make_wrapped_card(texture_path: String) -> Control:
 	wrapper.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	wrapper.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	wrapper.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-
-	# IMPORTANT: container layout uses this
 	wrapper.custom_minimum_size = tex.get_size()
+
+	var shadow := ColorRect.new()
+	shadow.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	shadow.color = Color(0, 0, 0, 0.45)
+	shadow.custom_minimum_size = tex.get_size()
+	wrapper.add_child(shadow)
 
 	var rect := TextureRect.new()
 	rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	rect.texture = tex
 	rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	rect.stretch_mode = TextureRect.STRETCH_KEEP
-
-	# Make the card fill the wrapper
-	rect.set_anchors_preset(Control.PRESET_FULL_RECT)
-	rect.position = Vector2(0, -40)
-
 	wrapper.add_child(rect)
 
-	# Animate INSIDE the wrapper
+	shadow.set_anchors_preset(Control.PRESET_FULL_RECT)
+	rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+
+	shadow.position = Vector2(16, 18)
+	rect.position = Vector2(0, -40)
+
+	# --- random rotation (degrees -> radians) ---
+	var deg := randf_range(-3.0, 3.0)
+	rect.rotation = deg_to_rad(deg)
+	shadow.rotation = rect.rotation # optional, looks nicer
+	# ------------------------------------------
+
 	rect.modulate.a = 0.0
 	rect.scale = Vector2(0.9, 0.9)
+
 	var tween := create_tween()
 	tween.tween_property(rect, "position", Vector2.ZERO, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(rect, "modulate:a", 1.0, 0.18)

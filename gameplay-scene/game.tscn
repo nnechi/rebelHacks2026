@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://d11lim1u2e24i"]
+[gd_scene load_steps=13 format=3 uid="uid://d11lim1u2e24i"]
 
 [ext_resource type="Script" uid="uid://be8i7rv0xfrr8" path="res://gameplay-scene/game-logic.gd" id="1_n2enm"]
 [ext_resource type="Texture2D" uid="uid://bbisiq2oftokt" path="res://assets/images/background3.png" id="2_1jfn3"]
+[ext_resource type="Texture2D" uid="uid://6gukv6mwhmwh" path="res://assets/images/cards_alternatives/card_back_pix.png" id="2_387hk"]
 [ext_resource type="FontFile" uid="uid://cpwm7d3lrhrkk" path="res://assets/PixelifySans-Regular.ttf" id="2_dl2ym"]
 [ext_resource type="FontFile" uid="uid://ddmd7pp0hamna" path="res://assets/PublicPixel.ttf" id="2_sviuc"]
+[ext_resource type="LabelSettings" uid="uid://y0n1omgt4mxo" path="res://assets/new_label_settings.tres" id="4_kegfm"]
+[ext_resource type="Texture2D" uid="uid://dqdlwn6wx6w18" path="res://assets/images/arrow.png" id="6_e65rd"]
 
 [sub_resource type="Animation" id="Animation_1h22c"]
 resource_name = "HitAnimationD"
@@ -65,6 +68,17 @@ _data = {
 &"HitAnimationP": SubResource("Animation_4r27c")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_kegfm"]
+font_size = 40
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 0.5921569)
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_e65rd"]
+font_size = 72
+shadow_color = Color(0, 0, 0, 0.6039216)
+shadow_offset = Vector2(4, 4)
+
 [node name="Gameplay" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -75,6 +89,160 @@ grow_vertical = 2
 script = ExtResource("1_n2enm")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+z_index = 6
+z_as_relative = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 1564.0
+offset_top = 661.0
+offset_right = 2073.0
+offset_bottom = 1387.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_387hk")
+
+[node name="Shadow" type="ColorRect" parent="TextureRect"]
+show_behind_parent = true
+z_index = 2
+z_as_relative = false
+layout_mode = 0
+offset_left = -44.0
+offset_top = 28.0
+offset_right = 480.0
+offset_bottom = 764.0
+mouse_filter = 2
+color = Color(0.3019608, 0.34117648, 0.4, 1)
+
+[node name="Shadow" type="ColorRect" parent="TextureRect/Shadow"]
+show_behind_parent = true
+z_index = 2
+z_as_relative = false
+layout_mode = 0
+offset_left = 86.0
+offset_top = -28.0
+offset_right = 592.0
+offset_bottom = 736.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="LeftMenuBar" type="ColorRect" parent="."]
+show_behind_parent = true
+z_index = 1
+layout_mode = 0
+offset_left = -10.0
+offset_top = -27.0
+offset_right = 386.0
+offset_bottom = 1109.0
+mouse_filter = 2
+color = Color(0.22670761, 0.22670746, 0.22670746, 1)
+
+[node name="ActualDecoration" type="ColorRect" parent="LeftMenuBar"]
+show_behind_parent = true
+z_index = 1
+layout_mode = 0
+offset_left = 397.0
+offset_top = 24.0
+offset_right = 413.0
+offset_bottom = 1160.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.29803923)
+
+[node name="ShadowDecoration" type="ColorRect" parent="LeftMenuBar"]
+show_behind_parent = true
+z_index = 1
+layout_mode = 0
+offset_left = 388.0
+offset_right = 397.0
+offset_bottom = 1136.0
+mouse_filter = 2
+color = Color(0.7569886, 0.53034824, 0.14240357, 1)
+
+[node name="Panel" type="ColorRect" parent="LeftMenuBar"]
+show_behind_parent = true
+z_index = 1
+layout_mode = 0
+offset_left = 18.0
+offset_top = 41.0
+offset_right = 378.0
+offset_bottom = 528.0
+mouse_filter = 2
+color = Color(0.16565654, 0.16565633, 0.16565648, 1)
+
+[node name="Shadow" type="ColorRect" parent="LeftMenuBar/Panel"]
+show_behind_parent = true
+z_index = 2
+z_as_relative = false
+layout_mode = 0
+offset_left = 6.0
+offset_right = 366.0
+offset_bottom = 494.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="Panel2" type="ColorRect" parent="LeftMenuBar"]
+show_behind_parent = true
+z_index = 1
+layout_mode = 0
+offset_left = 18.0
+offset_top = 549.0
+offset_right = 378.0
+offset_bottom = 1110.0
+mouse_filter = 2
+color = Color(0.16565654, 0.16565633, 0.16565648, 1)
+
+[node name="Shadow" type="ColorRect" parent="LeftMenuBar/Panel2"]
+show_behind_parent = true
+z_index = 2
+z_as_relative = false
+layout_mode = 0
+offset_left = 6.0
+offset_right = 366.0
+offset_bottom = 568.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="Panel3" type="ColorRect" parent="LeftMenuBar/Panel2"]
+show_behind_parent = true
+z_index = 1
+layout_mode = 0
+offset_left = 14.0
+offset_top = 286.0
+offset_right = 352.0
+offset_bottom = 539.0
+mouse_filter = 2
+color = Color(0.11858133, 0.11858139, 0.11858136, 1)
+
+[node name="Panel4" type="ColorRect" parent="LeftMenuBar/Panel2/Panel3"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 344.0
+offset_bottom = 259.0
+mouse_filter = 2
+color = Color(0.103743605, 0.103743516, 0.103743516, 1)
+
+[node name="Panel4" type="ColorRect" parent="LeftMenuBar/Panel2"]
+show_behind_parent = true
+z_index = 1
+layout_mode = 0
+offset_left = 14.0
+offset_top = 15.0
+offset_right = 352.0
+offset_bottom = 268.0
+mouse_filter = 2
+color = Color(0.11858133, 0.11858139, 0.11858136, 1)
+
+[node name="Panel4" type="ColorRect" parent="LeftMenuBar/Panel2/Panel4"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 344.0
+offset_bottom = 259.0
+mouse_filter = 2
+color = Color(0.103743605, 0.103743516, 0.103743516, 1)
+
+[node name="Background" type="TextureRect" parent="."]
 texture_filter = 1
 layout_mode = 0
 offset_top = -3.0
@@ -85,10 +253,10 @@ texture = ExtResource("2_1jfn3")
 [node name="Buttons" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.8625
-anchor_top = 0.259259
-anchor_right = 0.985937
-anchor_bottom = 0.748148
+anchor_left = 0.81927085
+anchor_top = 0.103703424
+anchor_right = 0.94270784
+anchor_bottom = 0.5925925
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -97,13 +265,6 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 theme_override_constants/separation = 13
 alignment = 2
-
-[node name="Hit" type="Button" parent="Buttons/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("2_sviuc")
-theme_override_font_sizes/font_size = 25
-text = "HIT"
 
 [node name="Stand" type="Button" parent="Buttons/VBoxContainer"]
 layout_mode = 2
@@ -129,6 +290,13 @@ theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 25
 text = "AUTOPLAY"
 
+[node name="Hit" type="Button" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_sviuc")
+theme_override_font_sizes/font_size = 25
+text = "HIT"
+
 [node name="Cards" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -152,10 +320,12 @@ alignment = 2
 
 [node name="DealerHand" type="HBoxContainer" parent="Cards/Hands"]
 layout_mode = 2
+theme_override_constants/separation = 36
 alignment = 1
 
 [node name="PlayerHand" type="HBoxContainer" parent="Cards/Hands"]
 layout_mode = 2
+theme_override_constants/separation = 36
 alignment = 1
 
 [node name="DealerScore" type="Label" parent="."]
@@ -170,6 +340,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 42
+label_settings = ExtResource("4_kegfm")
 horizontal_alignment = 1
 
 [node name="PlayerScore" type="Label" parent="."]
@@ -184,6 +355,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 42
+label_settings = ExtResource("4_kegfm")
 horizontal_alignment = 1
 
 [node name="NumberBar" type="ColorRect" parent="."]
@@ -209,18 +381,6 @@ offset_right = 1083.0
 offset_bottom = 587.0
 mouse_filter = 2
 color = Color(0.101961, 0.101961, 0.101961, 1)
-
-[node name="RightMenuBar" type="ColorRect" parent="."]
-show_behind_parent = true
-light_mask = 512
-visibility_layer = 512
-layout_mode = 0
-offset_left = 1630.0
-offset_top = -30.0
-offset_right = 1953.0
-offset_bottom = 1106.0
-mouse_filter = 2
-color = Color(0.168627, 0.168627, 0.168627, 1)
 
 [node name="PlayerHitMarker" type="Label" parent="."]
 layout_mode = 1
@@ -257,20 +417,46 @@ libraries = {
 autoplay = "HitAnimationD"
 
 [node name="WhoseTurn" type="Label" parent="."]
+z_index = 5
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 1662.0
-offset_top = -477.0
-offset_bottom = -390.0
+offset_left = 63.0
+offset_top = -509.0
+offset_right = -1591.0
+offset_bottom = -377.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_dl2ym")
 theme_override_font_sizes/font_size = 41
-text = "Player's
-Turn"
+text = "Player's Turn"
+label_settings = SubResource("LabelSettings_kegfm")
+
+[node name="Panel" type="ColorRect" parent="WhoseTurn"]
+show_behind_parent = true
+z_index = 3
+z_as_relative = false
+layout_mode = 0
+offset_left = -46.0
+offset_top = -10.0
+offset_right = 302.0
+offset_bottom = 54.0
+mouse_filter = 2
+color = Color(0.75686276, 0.5294118, 0.14117648, 1)
+
+[node name="Shadow" type="ColorRect" parent="WhoseTurn"]
+show_behind_parent = true
+z_index = 2
+z_as_relative = false
+layout_mode = 0
+offset_left = -41.0
+offset_top = -5.0
+offset_right = 307.0
+offset_bottom = 59.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.39215687)
 
 [node name="WinnerText" type="Label" parent="."]
 layout_mode = 0
@@ -299,20 +485,105 @@ AGAIN"
 alignment = 0
 
 [node name="Exit" type="Button" parent="."]
+z_index = 2
 layout_mode = 0
-offset_left = 1656.0
-offset_top = 951.0
-offset_right = 1893.0
-offset_bottom = 1058.0
+offset_left = 48.0
+offset_top = 356.0
+offset_right = 341.0
+offset_bottom = 463.0
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 0.556863, 0.494118, 1)
 theme_override_fonts/font = ExtResource("2_sviuc")
 theme_override_font_sizes/font_size = 25
 text = "EXIT"
 
-[connection signal="pressed" from="Buttons/VBoxContainer/Hit" to="." method="_on_hit_pressed"]
+[node name="BalanceLabel" type="Label" parent="."]
+z_index = 5
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 63.0
+offset_top = -427.0
+offset_right = 56.0
+offset_bottom = -247.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_dl2ym")
+theme_override_font_sizes/font_size = 41
+text = "     BALANCE"
+label_settings = SubResource("LabelSettings_kegfm")
+
+[node name="Panel" type="ColorRect" parent="BalanceLabel"]
+show_behind_parent = true
+z_index = 3
+z_as_relative = false
+layout_mode = 0
+offset_left = -46.0
+offset_top = -10.0
+offset_right = 302.0
+offset_bottom = 197.0
+mouse_filter = 2
+color = Color(0.4853196, 0.33334464, 0.07247136, 1)
+
+[node name="Shadow" type="ColorRect" parent="BalanceLabel"]
+show_behind_parent = true
+z_index = 2
+z_as_relative = false
+layout_mode = 0
+offset_left = -41.0
+offset_top = -5.0
+offset_right = 307.0
+offset_bottom = 204.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="BalanceValue" type="Label" parent="BalanceLabel"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = -18.0
+offset_right = -1623.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_dl2ym")
+theme_override_font_sizes/font_size = 41
+text = "     $2000"
+label_settings = SubResource("LabelSettings_e65rd")
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="BalanceLabel"]
+z_index = 6
+z_as_relative = false
+texture_filter = 1
+layout_mode = 0
+offset_left = -52.0
+offset_top = 45.0
+offset_right = 73.0
+offset_bottom = 170.0
+texture = ExtResource("6_e65rd")
+
+[node name="Shadow" type="TextureRect" parent="BalanceLabel/TextureRect"]
+modulate = Color(0, 0, 0, 0.39215687)
+z_index = 5
+z_as_relative = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("6_e65rd")
+
 [connection signal="pressed" from="Buttons/VBoxContainer/Stand" to="." method="_on_stand_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/OptimalMove" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/Autoplay" to="." method="_on_autoplay_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/Hit" to="." method="_on_hit_pressed"]
 [connection signal="pressed" from="Replay" to="." method="_on_replay_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
