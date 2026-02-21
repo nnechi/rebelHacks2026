@@ -275,6 +275,8 @@ func generate_card(hand, back=false):
 #		dealerScore =21
 #		updateText()
 #		playerLose()
+#		$Replay.emit_signal("pressed")
+		
 	if hand == "player":
 		card_hand_container = $Cards/Hands/PlayerHand
 		if random_card[0] == 11 and playerScore > 10:  # Aces are 1 if score is too high for 11
