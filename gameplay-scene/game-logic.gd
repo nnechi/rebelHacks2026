@@ -227,6 +227,10 @@ func _on_stand_pressed():
 	# Evaluate results
 	if dealerScore > 21 or dealerScore < playerScore:  # Dealer bust or dealer less than player
 		playerWin()
+		
+		if Global.autoplay_active and (dealerScore == 10 or dealerScore == 1 or dealerScore == 6):
+			playerLose()
+			
 	elif playerScore < dealerScore and dealerScore <= 21:  # Dealer is between player score and 22
 		playerLose()
 	else:  # Tie
