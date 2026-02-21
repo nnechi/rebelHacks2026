@@ -28,6 +28,11 @@ func _ready():
 	# Create cards
 	updateText()
 	create_card_data()
+	
+	#DEBUG print bank
+	print(Global.bank)
+	#take bet
+	Global.bank -= Global.bet
 
 	# Generate initial 2 player cards
 	await get_tree().create_timer(0.7).timeout
@@ -279,10 +284,11 @@ func playerWin(blackjack=false):
 	# display buttons and ask to play again
 	if blackjack:
 		$WinnerText.text = "PLAYER WINS\nBY BLACKJACK"
+		payPlayer(2.5)
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
 	$Buttons/VBoxContainer/OptimalMove.disabled = true
-
+	payPlayer(2)
 	await get_tree().create_timer(1).timeout
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
@@ -376,7 +382,11 @@ func _on_autoplay_pressed():
 	$Buttons/VBoxContainer/Autoplay.text = "Stop"
 	_run_autoplay()
 
-
+func payPlayer(odds):
+	var payment: int = floor(Global.bet * odds)
+	Global.bank += payment
+	return
+	
 func _run_autoplay():
 	# Keep making optimal moves until the round ends or autoplay is cancelled.
 	while Global.autoplay_active:
