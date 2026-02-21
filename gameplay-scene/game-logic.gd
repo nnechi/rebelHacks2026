@@ -14,12 +14,14 @@ var cardsShuffled = {}
 
 var ace_found
 
-var _autoplay_active = false
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#call randoizer for card shuffle()
 	randomize()
+	print("GL LOADED")
+	print(Global.autoplay_active)
+	if Global.autoplay_active:
+		$Buttons/VBoxContainer/Autoplay.text = "Stop"
 	$Replay.visible = false
 	$WinnerText.visible = false
 	$PlayerHitMarker.visible = false
@@ -48,6 +50,9 @@ func _ready():
 
 	if playerScore == 21:
 		playerWin(true)
+		
+	if Global.autoplay_active:
+		_run_autoplay()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -265,7 +270,7 @@ func playerLose():
 	await get_tree().create_timer(1).timeout
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
-	if _autoplay_active:
+	if Global.autoplay_active:
 		$Replay.emit_signal("pressed")
 	else:
 		$Replay.visible = true
@@ -283,7 +288,7 @@ func playerWin(blackjack=false):
 	await get_tree().create_timer(1).timeout
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
-	if _autoplay_active:
+	if Global.autoplay_active:
 		$Replay.emit_signal("pressed")
 	else:
 		$Replay.visible = true
@@ -299,7 +304,7 @@ func playerDraw():
 	await get_tree().create_timer(1).timeout
 	$WinnerText.visible = true
 	await get_tree().create_timer(0.5).timeout
-	if _autoplay_active:
+	if Global.autoplay_active:
 		$Replay.emit_signal("pressed")
 	else:
 		$Replay.visible = true
@@ -363,24 +368,24 @@ func playerHasAce(cards):
 # ── Autoplay ──────────────────────────────────────────────────────────────────
 
 func _on_autoplay_pressed():
-	if _autoplay_active:
+	if Global.autoplay_active:
 		# Second press: stop autoplay
-		_autoplay_active = false
+		Global.autoplay_active = false
 		$Buttons/VBoxContainer/Autoplay.text = "Autoplay"
 		return
 
-	_autoplay_active = true
+	Global.autoplay_active = true
 	$Buttons/VBoxContainer/Autoplay.text = "Stop"
 	_run_autoplay()
 
 
 func _run_autoplay():
 	# Keep making optimal moves until the round ends or autoplay is cancelled.
-	while _autoplay_active:
+	while Global.autoplay_active:
 		# Round is over when Hit/Stand are both disabled
 		if $Buttons/VBoxContainer/Hit.disabled:
-			#_autoplay_active = false
-			$Buttons/VBoxContainer/Autoplay.text = "Autoplay"
+			#Global.autoplay_active = false
+			#$Buttons/VBoxContainer/Autoplay.text = "Autoplay"
 			return
 		_optimalMove()
 		
