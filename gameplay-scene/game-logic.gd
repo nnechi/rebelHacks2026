@@ -286,7 +286,10 @@ func playerLose():
 	$Buttons/VBoxContainer/Stand.disabled = true
 	$Buttons/VBoxContainer/OptimalMove.disabled = true
 	await get_tree().create_timer(1).timeout
-	$WinnerText.visible = true
+	#$WinnerText.visible = true
+	
+	Dialogue.ShowMessage("Better luck next time!", true)
+	
 	await get_tree().create_timer(0.5).timeout
 	if Global.autoplay_active:
 		$Replay.emit_signal("pressed")
@@ -306,7 +309,10 @@ func playerWin(blackjack=false):
 	$Buttons/VBoxContainer/OptimalMove.disabled = true
 	payPlayer(2)
 	await get_tree().create_timer(1).timeout
-	$WinnerText.visible = true
+	#$WinnerText.visible = true
+	
+	Dialogue.ShowMessage("You won! Are you card counting???", true)
+	
 	await get_tree().create_timer(0.5).timeout
 	if Global.autoplay_active:
 		$Replay.emit_signal("pressed")

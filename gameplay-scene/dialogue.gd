@@ -40,7 +40,9 @@ func ShowMessage(text:String, isDealer:bool) -> void:
 func TweenMessage() -> void:
 	var waitObj = {
 		"," = .5,
-		"." = 1
+		"." = 1,
+		"?" = 1,
+		"!" = 1,
 	}
 	
 	var savedId:int = currentId
