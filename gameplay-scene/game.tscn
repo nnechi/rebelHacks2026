@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://d11lim1u2e24i"]
+[gd_scene load_steps=8 format=3 uid="uid://d11lim1u2e24i"]
 
-[ext_resource type="Script" path="res://gameplay-scene/game-logic.gd" id="1_n2enm"]
+[ext_resource type="Script" uid="uid://be8i7rv0xfrr8" path="res://gameplay-scene/game-logic.gd" id="1_n2enm"]
+[ext_resource type="Texture2D" uid="uid://bbisiq2oftokt" path="res://assets/images/background3.png" id="2_1jfn3"]
 [ext_resource type="FontFile" uid="uid://cpwm7d3lrhrkk" path="res://assets/PixelifySans-Regular.ttf" id="2_dl2ym"]
 [ext_resource type="FontFile" uid="uid://ddmd7pp0hamna" path="res://assets/PublicPixel.ttf" id="2_sviuc"]
 
@@ -60,8 +61,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6250x"]
 _data = {
-"HitAnimationD": SubResource("Animation_1h22c"),
-"HitAnimationP": SubResource("Animation_4r27c")
+&"HitAnimationD": SubResource("Animation_1h22c"),
+&"HitAnimationP": SubResource("Animation_4r27c")
 }
 
 [node name="Gameplay" type="Control"]
@@ -72,6 +73,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n2enm")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_top = -3.0
+offset_right = 1923.0
+offset_bottom = 1079.0
+texture = ExtResource("2_1jfn3")
 
 [node name="Buttons" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -112,6 +121,13 @@ text = "OPTIMAL
 
 MOVE
 "
+
+[node name="Autoplay" type="Button" parent="Buttons/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_sviuc")
+theme_override_font_sizes/font_size = 25
+text = "AUTOPLAY"
 
 [node name="Cards" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -228,7 +244,7 @@ anchor_bottom = 0.151
 offset_left = 91.0
 offset_top = 100.0
 offset_right = 69.64
-offset_bottom = 16.9205
+offset_bottom = 16.920502
 theme_override_colors/font_color = Color(0.490196, 1, 0.454902, 1)
 theme_override_fonts/font = ExtResource("2_dl2ym")
 theme_override_font_sizes/font_size = 80
@@ -236,7 +252,7 @@ text = "hit!"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_6250x")
+&"": SubResource("AnimationLibrary_6250x")
 }
 autoplay = "HitAnimationD"
 
@@ -283,7 +299,7 @@ AGAIN"
 alignment = 0
 
 [node name="Exit" type="Button" parent="."]
-layout_mode = 2
+layout_mode = 0
 offset_left = 1656.0
 offset_top = 951.0
 offset_right = 1893.0
@@ -297,5 +313,6 @@ text = "EXIT"
 [connection signal="pressed" from="Buttons/VBoxContainer/Hit" to="." method="_on_hit_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/Stand" to="." method="_on_stand_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/OptimalMove" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/Autoplay" to="." method="_on_autoplay_pressed"]
 [connection signal="pressed" from="Replay" to="." method="_on_replay_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
