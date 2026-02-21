@@ -12,6 +12,8 @@ var dealerCards = []
 var full52 = {}
 var cardsShuffled = {}
 
+var autoplayModifier = 1
+
 var ace_found
 var lastBet := Global.bet
 
@@ -25,19 +27,30 @@ var graph: Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#take bet
+	Global.push_bank_point(Global.bank)
+	
 	Global.bank -= Global.bet
 	if Global.bank < 0:
 		#ENDGAME SCENE HERE
 		print("GAME OVER MAN")
 		return
+		
+	$Background/betLabel.text = "Current bet:\n\n$" + str(Global.bet)
 	$BankBalance/BalanceValue.update_bank_text()
 	Dialogue.Initialize()
+	
+	Dialogue.ShowMessage(get_random_index(Global.welcome), true)
+	
 	var graph = graph_scene.instantiate()
 	graph_holder.add_child(graph)	
 	#call randoizer for card shuffle()
 	randomize()
 	if Global.autoplay_active:
+		autoplayModifier = 0.1
 		$Buttons/VBoxContainer/Autoplay.text = "Stop"
+	else:
+		autoplayModifier = 1.0
+		$Buttons/VBoxContainer/Autoplay.text = "Autoplay"
 	$Replay.visible = false
 	$WinnerText.visible = false
 	$PlayerHitMarker.visible = false
@@ -48,21 +61,21 @@ func _ready():
 	create_card_data()
 
 	# Generate initial 2 player cards
-	await get_tree().create_timer(0.7).timeout
+	await get_tree().create_timer(0.7 * autoplayModifier).timeout
 	generate_card("player")
 	updateText()
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5 * autoplayModifier).timeout
 	generate_card("player")
 	updateText()
 
 	# Generate dealers cards; note how first one is true as we want to show the back
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5 * autoplayModifier).timeout
 	generate_card("dealer", true)
 	updateText()
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5 * autoplayModifier).timeout
 	generate_card("dealer")
 	updateText()
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1 * autoplayModifier).timeout
 	
 	
 	if playerScore == 21:
@@ -180,11 +193,14 @@ func _on_stand_pressed():
 	$DealerHitMarker.visible = true
 	$WhoseTurn.text = "Dealer's Turn"
 
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5 * autoplayModifier).timeout
 	var dealer_hand_container = $Cards/Hands/DealerHand
-
+	
 	# Remove the first card from the container (the back of card texture)
 	var child_to_remove = dealer_hand_container.get_child(0)
+	if not child_to_remove:
+		return
+		
 	child_to_remove.queue_free()  # Remove the node from the scene
 
 	# Create a new TextureRect node for the card image
@@ -202,7 +218,7 @@ func _on_stand_pressed():
 
 	# Dealer hits until score surpasses player or 17 
 	while (dealerScore < playerScore and dealerScore < 17 ) or(dealerScore <= 17 and dealerHasSoftAce()): 
-		await get_tree().create_timer(1.5).timeout
+		await get_tree().create_timer(1.5 * autoplayModifier).timeout
 		# Play "hit!" animation for dealer
 		$AnimationPlayer.play("HitAnimationD")
 		generate_card("dealer")
@@ -309,12 +325,12 @@ func playerLose():
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
 	$Buttons/VBoxContainer/OptimalMove.disabled = true
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1 * autoplayModifier).timeout
 	#$WinnerText.visible = true
 	
 	Dialogue.ShowMessage(get_random_index(Global.loss_lines), true)
 	
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5 * autoplayModifier).timeout
 	if Global.autoplay_active:
 		$Replay.emit_signal("pressed")
 	else:
@@ -333,14 +349,14 @@ func playerWin(blackjack=false):
 	$Buttons/VBoxContainer/Stand.disabled = true
 	$Buttons/VBoxContainer/OptimalMove.disabled = true
 	payPlayer(2)
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1 * autoplayModifier).timeout
 	#$WinnerText.visible = true
 	
 	Dialogue.ShowMessage(get_random_index(Global.win_lines), true)
 	
 	Global.push_bank_point(float(Global.bank))
 	
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5 * autoplayModifier).timeout
 	if Global.autoplay_active:
 		$Replay.emit_signal("pressed")
 	else:
@@ -351,6 +367,10 @@ func playerDraw():
 	Global.games+=1
 	Global.ties+=1
 	Global.lastGame = "Draw"
+	
+	Global.push_bank_point(Global.bank)
+	Dialogue.ShowMessage("It looks like we both won...", true)
+
 	payPlayer(1)
 	# Nobody wins: display white text, disable buttons and ask to play again
 	$WinnerText.text = "DRAW"
@@ -358,9 +378,9 @@ func playerDraw():
 	$Buttons/VBoxContainer/Hit.disabled = true
 	$Buttons/VBoxContainer/Stand.disabled = true
 	$Buttons/VBoxContainer/OptimalMove.disabled = true
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1 * autoplayModifier).timeout
 	$WinnerText.visible = true
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5 * autoplayModifier).timeout
 	if Global.autoplay_active:
 		$Replay.emit_signal("pressed")
 	else:
@@ -428,9 +448,11 @@ func _on_autoplay_pressed():
 	if Global.autoplay_active:
 		# Second press: stop autoplay
 		Global.autoplay_active = false
+		autoplayModifier = 1
 		$Buttons/VBoxContainer/Autoplay.text = "Autoplay"
 		return
-
+	autoplayModifier = .1
+	
 	Global.autoplay_active = true
 	$Buttons/VBoxContainer/Autoplay.text = "Stop"
 	_run_autoplay()
@@ -447,6 +469,7 @@ func _run_autoplay():
 		$Replay.emit_signal("pressed")
 	# Keep making optimal moves until the round ends or autoplay is cancelled.
 	while Global.autoplay_active:
+		autoplayModifier = .1
 		# Round is over when Hit/Stand are both disabled
 		if $Buttons/VBoxContainer/Hit.disabled:
 			#Global.autoplay_active = false
@@ -456,7 +479,7 @@ func _run_autoplay():
 		
 
 		# Brief pause so the player can follow along
-		await get_tree().create_timer(0.8).timeout
+		await get_tree().create_timer(0.8 * autoplayModifier).timeout
 
 
 func _on_quit_pressed() -> void:

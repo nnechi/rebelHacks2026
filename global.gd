@@ -11,6 +11,11 @@ var lastGame:String = "Draw"
 signal bank_changed(new_bank: float)
 var bank_history: Array[float] = []
 
+var welcome = [
+	"Everyone's a winner in Vegas.",
+	"Sin City welcomes you!",
+	"Whatever happens in Vegas, stays in Vegas."
+]
 
 
 # Dealer / Narration Arrays
