@@ -412,6 +412,8 @@ func payPlayer(odds):
 	return
 	
 func _run_autoplay():
+	if $Replay.visible:
+		$Replay.emit_signal("pressed")
 	# Keep making optimal moves until the round ends or autoplay is cancelled.
 	while Global.autoplay_active:
 		# Round is over when Hit/Stand are both disabled
