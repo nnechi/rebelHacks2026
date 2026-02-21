@@ -55,12 +55,16 @@ func _ready():
 	generate_card("dealer")
 	updateText()
 	await get_tree().create_timer(1).timeout
-	var tempScore: int = dealerScore + dealerCards[1]
 	
-	if playerScore == 21 and not tempScore == 21:
+	
+	if playerScore == 21:
 		playerWin(true)
-	if playerScore == 21 and  tempScore == 21:
-		playerDraw()
+	##21 push logic, may not be needed
+	#var tempScore: int = dealerScore + dealerCards[0][0]
+	#if playerScore == 21 and not tempScore == 21:
+	#	playerWin(true)
+	#if playerScore == 21 and  tempScore == 21:
+	#	playerDraw()
 	if Global.autoplay_active:
 		_run_autoplay()
 	
