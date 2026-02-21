@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://brp0a4l4i8jda" path="res://gameplay-scene/ties.gd" id="7_21bi7"]
 [ext_resource type="Script" uid="uid://dnc3hffyaohry" path="res://gameplay-scene/bank.gd" id="8_bwecg"]
 [ext_resource type="Texture2D" uid="uid://cgh5agpq8gigh" path="res://assets/images/girlll2.png" id="8_m3mv0"]
+[ext_resource type="Script" uid="uid://dc08110efhcx2" path="res://gameplay-scene/arrow.gd" id="13_mnx84"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kegfm"]
 font_size = 40
@@ -775,7 +776,7 @@ label_settings = SubResource("LabelSettings_e65rd")
 horizontal_alignment = 2
 script = ExtResource("8_bwecg")
 
-[node name="TextureRect" type="TextureRect" parent="BankBalance" unique_id=784008283]
+[node name="Arrow" type="TextureRect" parent="BankBalance" unique_id=784008283]
 z_index = 6
 z_as_relative = false
 texture_filter = 1
@@ -785,8 +786,9 @@ offset_top = 45.0
 offset_right = 73.0
 offset_bottom = 170.0
 texture = ExtResource("6_e65rd")
+script = ExtResource("13_mnx84")
 
-[node name="Shadow" type="TextureRect" parent="BankBalance/TextureRect" unique_id=311915119]
+[node name="Shadow" type="TextureRect" parent="BankBalance/Arrow" unique_id=311915119]
 modulate = Color(0, 0, 0, 0.39215687)
 z_index = 5
 z_as_relative = false

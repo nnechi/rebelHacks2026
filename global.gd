@@ -7,6 +7,7 @@ var games: int = 0
 var wins: int = 0
 var losses: int = 0
 var ties: int = 0
+var lastGame:String = "Draw"
 
 # Dealer / Narration Arrays
 var general_lines = [

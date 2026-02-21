@@ -13,9 +13,13 @@ var full52 = {}
 var cardsShuffled = {}
 
 var ace_found
+var lastBet := Global.bet
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#take bet
+	Global.bank -= Global.bet
+	$BankBalance/BalanceValue.update_bank_text()
 	Dialogue.Initialize()
 
 	#call randoizer for card shuffle()
@@ -33,8 +37,7 @@ func _ready():
 	
 	#DEBUG print bank
 	print(Global.bank)
-	#take bet
-	Global.bank -= Global.bet
+
 
 	# Generate initial 2 player cards
 	await get_tree().create_timer(0.7).timeout
@@ -279,6 +282,7 @@ func updateText():
 func playerLose():
 	Global.games+=1
 	Global.losses+=1
+	Global.lastGame = "Loss"
 	# Player has lost: display red text, disable buttons, ask to play again
 	$WinnerText.text = "DEALER WINS"
 	$WinnerText.set("theme_override_colors/font_color", "ff5342")
@@ -300,6 +304,7 @@ func playerLose():
 func playerWin(blackjack=false):
 	Global.games+=1
 	Global.wins+=1
+	Global.lastGame = "Win"
 	# Player has won: display text (already set if not blackjack),
 	# display buttons and ask to play again
 	if blackjack:
@@ -323,6 +328,8 @@ func playerWin(blackjack=false):
 func playerDraw():
 	Global.games+=1
 	Global.ties+=1
+	Global.lastGame = "Draw"
+	payPlayer(1)
 	# Nobody wins: display white text, disable buttons and ask to play again
 	$WinnerText.text = "DRAW"
 	$WinnerText.set("theme_override_colors/font_color", "white")
@@ -407,8 +414,10 @@ func _on_autoplay_pressed():
 	_run_autoplay()
 
 func payPlayer(odds):
-	var payment: int = floor(Global.bet * odds)
+	var payment: int = floor(lastBet * odds)
 	Global.bank += payment
+	$BankBalance/BalanceValue.update_bank_text()
+	$BankBalance/Arrow.updateArrow()
 	return
 	
 func _run_autoplay():
